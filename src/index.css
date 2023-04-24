@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Righteous";
+  src: url("/src/assets/fonts/Righteous-Regular.ttf");
+}
+@font-face {
+  font-family: "Jost";
+  src: url("/src/assets/fonts/Jost-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Righteous-Regular.ttf");
+}
+@layer components{
+
+body{
+  background-color: black;
+  color: white;
+}
+
+}
