@@ -5,6 +5,9 @@ export default {
 
   theme: {
     extend: {
+      screens: {
+        vs: '290px'
+      },
       colors: {
         primary: "#c74aae",
         grey: "#222222",
@@ -19,6 +22,7 @@ export default {
       },
       backgroundImage: {
         // "home-hero": "url('/assets/images/football-hero.jpg')"
+        "football-field": "url('/src/assets/svg/football-field.svg')"
       }
     },
   },
