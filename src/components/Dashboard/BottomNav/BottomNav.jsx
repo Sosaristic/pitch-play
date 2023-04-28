@@ -8,7 +8,7 @@ export default function BottomNav() {
   return (
     <div className="flex justify-around bg-black items-center py-2">
       {sideBarLinks?.map((item) => (
-        <div className="flex items-center justify-center flex-col gap-1 text-gray-500   ">
+        <div key={item.id} className="flex items-center justify-center flex-col gap-1 text-gray-500   ">
           <Link
             to={item.link}
             className={`

@@ -10,7 +10,6 @@ export const sideBarLinks = [
 
 export default function SideBarLinks() {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <nav>
       <ul className="flex flex-col gap-6">
