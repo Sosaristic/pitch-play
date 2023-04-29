@@ -56,5 +56,31 @@ body{
 .popover{
   background-color: rgba(50, 43, 51, 0.9);
 }
+/* speed dial */
+.open-speed-dial{
+
+ height: 7rem;
+  transition: all .7s ease;
+}
+.close-speed-dial{
+  height: 0;
+  transition: all .7s ease;
+
+}
+/* modal */
+.match-modal{
+  animation: modal .2s linear .1s   forwards;
+}
+
+@keyframes modal {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+  
+}
+
 
 }
