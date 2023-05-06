@@ -18,11 +18,16 @@
   font-family: "Poppins";
   src: url("/src/assets/fonts/Poppins-Regular.ttf");
 }
+
+
+
 @layer components{
+
 
 body{
   background-color: black;
   color: white;
+  scrollbar-color: red;
 }
 
 .match-active::before{
@@ -49,10 +54,10 @@ body{
   background: linear-gradient(45deg, rgba(182, 131, 224, 0.585)0%, rgba(0,0,0,0.290) 74%, rgba(175, 160,178,0.400)98%);
   border-top: 2px solid rgb(234, 135, 238);
 }
-.create-btn-shadow{
-  filter: drop-shadow(5px 6px 10px  rgba(234, 135, 238, 0.9));
 
-}
+/* dashboard side bar */
+
+
 .popover{
   background-color: rgba(50, 43, 51, 0.9);
 }
@@ -82,5 +87,31 @@ body{
   
 }
 
+/* team selector */
+.team-selector{
+  position: relative;
+  color: white;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+ 
+  
+}
+.team-selector>div{
+  min-width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+  transition: all 1s ease;
+}
+
+.carousel-small-buttons{
+  background-color: grey;
+  border-radius: 50%;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*  */
 
 }

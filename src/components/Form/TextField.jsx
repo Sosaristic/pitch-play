@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
-export default function TextField({ type, label, value, regex, errorMsg, id, placeholder, name, onChange}) {
+export default function TextField({ type, label, value, regex, errorMsg, id, placeholder, name, onChange,}) {
   const [displayError, setDisplayError] = useState(false);
   const [reValidateInput, setReValidateInput] = useState(false);
 

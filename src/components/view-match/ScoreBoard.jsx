@@ -1,10 +1,11 @@
 import { IoMdShirt } from "react-icons/io";
 import { matchData } from "../Home/homeData";
 
-export default function ScoreBoard(){
+export default function ScoreBoard({scoreBoardData}){
+    const {homeScore, awayScore} = scoreBoardData
     const {id, time, competition, home, away} = matchData[0]
-    const {homeName, homeScore, homeColor} = home
-    const {awayName, awayScore, awayColor} = away
+    const {homeName, homeColor} = home
+    const {awayName, awayColor} = away
 
     return (
         <div>

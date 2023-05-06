@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
-import { Matches, Overview } from "./components/Dashboard/";
+import MatchRoute from "./pages/MatchRoute.jsx";
+import { Matches, Overview, ScoreUpdater, MyTeam } from "./components/Dashboard/";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
         path: "/view-match/:id",
         element: <ViewMatch />,
         children: [
-          { path: "", element: <Info /> },
+          { index: true, element: <Info /> },
           { path: "summary", element: <Summary /> },
           { path: "statistics", element: <Statistics /> },
           { path: "line-ups", element: <LineUp /> },
@@ -28,12 +29,21 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {path: "dashboard/", element: <Dashboard />, 
-children: [
-  {path: "", element: <Overview />},
-  {path: "/dashboard/matches", element: <Matches />}
-]
-}
+  {
+    element: <Dashboard />,
+    children: [
+      { path: "/dashboard/overview", element: <Overview /> },
+      {
+        
+        element: <MatchRoute />,
+        children: [
+          {path: "/dashboard/matches", element: <Matches />},
+          {path: "/dashboard/matches/live/:id", element: <ScoreUpdater />}
+        ]
+      },
+      { path: "/dashboard/my-team", element: <MyTeam /> },
+    ],
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

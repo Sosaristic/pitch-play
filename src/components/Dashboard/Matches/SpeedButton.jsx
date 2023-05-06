@@ -21,7 +21,7 @@ import { MdClose } from "react-icons/md";
           openSpeedDial ? "open-speed-dial" : "close-speed-dial"
         } overflow-hidden`}
       >
-        <button
+        <div
           className="flex items-center gap-4 w-full bg-primary rounded-2xl px-4 py-1 "
           onClick={() => handleModalDisplay("friendly")}
         >
@@ -29,13 +29,13 @@ import { MdClose } from "react-icons/md";
           <span className="text-[2rem] ml-auto flex items-center justify-center">
             <GiSoccerKick />
           </span>
-        </button>
-        <button className="flex items-center gap-4 w-full bg-primary rounded-2xl px-4 py-1" onClick={()=>handleModalDisplay("competition")}>
+        </div>
+        <div className="flex items-center gap-4 w-full bg-primary rounded-2xl px-4 py-1" onClick={()=>handleModalDisplay("competition")}>
           <div className="text-[1rem]"> Competition</div>
           <span className="text-[2rem] flex ml-auto  items-center justify-center ">
             <BsFillTrophyFill />
           </span>
-        </button>
+        </div>
       </div>
       <div className="text-[2.5rem]">{openSpeedDial ? <MdClose /> : <BsPlusLg />}</div>
     </button>

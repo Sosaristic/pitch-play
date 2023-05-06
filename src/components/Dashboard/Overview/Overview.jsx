@@ -1,5 +1,5 @@
 import React from 'react'
-import DHero from './DHero'
+import {DHero} from ".."
 
 export default function Overview() {
   return (

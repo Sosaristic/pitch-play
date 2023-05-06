@@ -31,15 +31,15 @@ export default function StatCard({ type, homeValue, awayValue }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-2 mt-3">
-        <div className="flex font-[600] text-gray-400">
+      <div className="flex flex-col gap-1 mt-3">
+        <div className="flex font-[600] text-gray-400 px-4">
           <div className="basis-1/3 flex-1">{homeValue}</div>
           <div className="basis-1/3 flex-1 text-center">{type}</div>
           <div className="basis-1/3 flex-1 text-right">{awayValue}</div>
         </div>
         <div className="flex gap-4">
           <div
-            className={`relative min-h-[.6rem] flex-1 vs:min-h-[.8rem] bg-grey w-full rounded-tl-2xl rounded-bl-2xl`}
+            className={`relative min-h-[.6rem] flex-1 vs:min-h-[.4rem] bg-grey w-full rounded-tl-2xl rounded-bl-2xl`}
           >
             <div
               className="absolute h-full bg-primary rounded-tl-2xl rounded-bl-2xl "
@@ -47,7 +47,7 @@ export default function StatCard({ type, homeValue, awayValue }) {
             ></div>
           </div>
           <div
-            className={`relative min-h-[.6rem] flex-1 vs:min-h-[.8rem] bg-grey rounded-tr-2xl rounded-br-2xl`}
+            className={`relative min-h-[.6rem] flex-1 vs:min-h-[.4rem] bg-grey rounded-tr-2xl rounded-br-2xl`}
           >
             <div
               className="absolute right-0 h-full  bg-primary rounded-tr-2xl rounded-br-2xl "

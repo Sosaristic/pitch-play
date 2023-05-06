@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { IoMdShirt } from "react-icons/io";
 
 
-export default function TeamsCard() {
+export default function TeamsCard({handleMatchCard, id}) {
+  
   return (
-    <div className='flex relative p-4 basis-full md:basis-[45%]  lg:basis-[30%] items-center justify-center teams-card text-white rounded-lg'>
+    <div onClick={()=>handleMatchCard(id)} className='flex relative p-4 basis-full md:basis-[45%]  lg:basis-[30%] items-center justify-center teams-card text-white rounded-lg'>
         <div className='flex items-center w-2/5 flex-col flex-2'>
            <div className='text-[3rem] text-[red]'> <IoMdShirt /></div>
            <p> Ronaldo fans </p>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 const links = [
   { id: 1, title: "Info", link: "" },
   { id: 2, title: "Summary", link: "summary" },
@@ -8,26 +8,26 @@ const links = [
 ];
 
 export default function RoutingLinks() {
-  const {pathname} = useLocation()
-  const navigate = useNavigate()
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const basePath = pathname.slice(0, 14);
 
-  const handleSetActive = (link) => {
-    navigate(`${basePath}${link}`)
-  };
+ 
   return (
-    <ul className="flex gap-4 font-bold text-[.8rem] sm:text-[1rem] lg:text-[1.2rem] mt-4">
-      {links.map((item) =>{
-    
-      return (
-        <li
-          key={item.id}
-          className={`${pathname == `${basePath}${item.link}`? "text-primary border-b-[1px] border-primary" : "" } } cursor-pointer`}
-          onClick={() => handleSetActive(item.link)}
-        >
-          {item.title}
-        </li>
-      )})}
+    <ul className="flex gap-4 font-bold text-[.8rem] sm:text-[1rem] lg:text-[1.2rem] mt-4 px-2">
+      {links.map((item) => {
+        return (
+          <NavLink key={item.id}
+            to={`${basePath}${item.link}`}
+            className={({ isActive }) => {
+              console.log(isActive);
+              return isActive ? "text-primary border-b-[1px] border-primary cursor-default" : "";
+            }}
+          >
+            {item.title}
+          </NavLink>
+        );
+      })}
     </ul>
   );
 }

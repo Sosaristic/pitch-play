@@ -4,7 +4,7 @@ import HeroImage from "../../../assets/svg/Soccer-amico.svg";
 
 export default function () {
   const navigate = useNavigate()
-  return <section className="md:h-[20rem] w-[95%] relative  mx-auto py-2 flex items-stretch bg-primary rounded-md md:rounded-lg">
+  return <section className="md:h-[20rem] w-[95%] md:w-full relative  mx-auto py-2 flex items-stretch bg-primary rounded-md md:rounded-lg">
     <div className="basis-2/2 md:basis-1/2 text-[1.5rem] md:text-[3rem] relative font-inter flex-1 leading-12 px-4 mt-4">
       <p>Organise and manage <br /> Footbal matches</p>
       <button className="bg-white text-primary text-[1rem] md:text-[1.4rem] px-4 py-2 mt-8 rounded-lg shadow-2xl font-[700]"
