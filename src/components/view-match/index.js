@@ -1,7 +1,6 @@
 export {default as ScoreBoard} from "./ScoreBoard"
 export {default as RoutingLinks} from "./RoutingLinks"
 export {default as LineUp} from "./LineUp"
-export {default as PitchView} from "./PitchView"
 export {default as Squad} from "./Squad"
 export {default as Statistics} from "./Statistics"
 export {default as Info} from "./Info"

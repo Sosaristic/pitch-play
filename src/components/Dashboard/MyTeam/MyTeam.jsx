@@ -1,7 +1,10 @@
 import React from 'react'
-
+import { PitchView } from '../../UI'
 export default function MyTeam() {
   return (
-    <div>MyTeam</div>
+    <div>
+<p>pitch view</p>
+<PitchView />
+    </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import {PopOver} from "../UI"
 
-export default function ConfirmationDialog({ handleDialog, handleUpdate, message }){
+export default function ConfirmationDialog({ closeDialog, handleUpdate, message }){
     return (
         <div>
           <PopOver>
@@ -10,7 +10,7 @@ export default function ConfirmationDialog({ handleDialog, handleUpdate, message
               <div className="self-end px-4 flex gap-4">
                 <button
                   className="border border-primary px-4 py-1 rounded-2xl active:bg-primary lg:hover:bg-hover lg:hover:text-white "
-                  onClick={handleDialog}
+                  onClick={closeDialog}
                 >
                   Cancel
                 </button>

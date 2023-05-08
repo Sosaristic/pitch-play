@@ -33,7 +33,7 @@ export default function LiveUpdateButtons({ valuesData, updateValues }) {
   return (
     <div className="flex gap-2 items-center">
       <UpdateCard score={homeScore} updateValues={updateValues} scoreType={type} team="homeScore"/>
-      <p className="w-3/5 text-center md:text-[1rem] text-[.7rem]  font-jost font-semibold">
+      <p className="w-3/5 text-center md:text-[1rem] text-[.7rem]  font-jost font-[500] capitalize">
         {type}
       </p>
       <UpdateCard score={awayScore} updateValues={updateValues} scoreType={type} team="awayScore"/>

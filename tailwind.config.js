@@ -12,7 +12,9 @@ export default {
         primary: "#c74aae",
         grey: "#222222",
         white: "#fff",
-        hover: "#66355c"
+        hover: "#66355c",
+        "pitch-light-green": "#589644",
+        "pitch-dark-green": "#528b40",
       },
       fontFamily: {
         righteous: ["Righteous", "cursive"],

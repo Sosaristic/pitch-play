@@ -8,8 +8,7 @@ import Home from "./pages/Home.jsx";
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
-import MatchRoute from "./pages/MatchRoute.jsx";
-import { Matches, Overview, ScoreUpdater, MyTeam } from "./components/Dashboard/";
+import { Matches, Overview, ScoreUpdater, MyTeam, MatchRoute } from "./components/Dashboard/";
 
 const router = createBrowserRouter([
   {
