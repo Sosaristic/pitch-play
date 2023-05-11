@@ -2,59 +2,64 @@ import React from "react";
 import { getFormation } from "../../functions/getFormation";
 import { useTeamData } from "../../context/MyTeamData";
 
-function PlayerCard({player}) {
+export function PlayerCard({ player, handlePlayerClick}) {
   return (
-    <div className="flex flex-col flex-1 items-center">
-      <div className="h-[1.8rem]  w-[1.8rem] md:h-[2.5rem] md:w-[2.5rem] rounded-full bg-black text-white flex items-center justify-center z-20">
+    <div className="flex flex-col flex-1 items-center capitalize relative cursor-default">
+      <div className="flex flex-col items-center capitalize relative cursor-default" onClick={()=>handlePlayerClick(player.id)}>
+      <div className="h-[1.8rem] relative  w-[1.8rem] md:h-[2.5rem] md:w-[2.5rem] rounded-full bg-black text-white flex items-center justify-center font-[600 capitalize] z-20">
         {player.num}
+        {player.isCaptain && <div className="absolute flex items-center justify-center rounded-full p-3  -top-3 -right-4  bg-black w-[.4rem] h-[.4rem] lg:w-[1rem] lg:h-[1rem] font-extrabold font-righteous vs:text-[.6rem] sm:text-[.8rem]">C</div>}
+
       </div>
       <p className="text-[.8rem] lg:text-lg z-10">{player.name}</p>
+      </div>
     </div>
   );
 }
 
-function PlayersContainer({players, lightGreen}){
+function PlayersContainer({ players, lightGreen, handlePlayerClick }) {
   return (
-<div className={` ${lightGreen? "bg-pitch-light-green": "bg-pitch-dark-green"} min-h-[5rem] min-w-full flex items-center `}>
-  {players?.map((item)=>{
-    return <PlayerCard key={item.id} player={item}/>
-  })}
-</div>
-  )
-
+    <div
+      className={` ${
+        lightGreen ? "bg-pitch-light-green" : "bg-pitch-dark-green"
+      } min-h-[5rem] min-w-full flex items-center justify-between `}
+    >
+      {players?.map((item) => {
+        return <PlayerCard key={item.id} player={item}  handlePlayerClick = {handlePlayerClick}/>;
+      })}
+    </div>
+  );
 }
 
-export default function PitchView({players}) {
-const {teamLineUp, teamFormation} = useTeamData()
-  const allFormations = getFormation(teamLineUp)
-const filteredFormation = allFormations?.filter((item)=>item.name === teamFormation)
-  const {name, formation} = filteredFormation[0]
-console.log(formation);
-  const {gk,df,mf,fw} = formation
-
-
+export default function PitchView({ players, handlePlayerClick }) {
+  const { teamLineUp, teamFormation } = useTeamData();
+  const allFormations = getFormation(teamLineUp);
+  const filteredFormation = allFormations?.filter((item) => item.name === teamFormation);
+  const { name, formation } = filteredFormation[0];
+  const { gk, df, mf, am, fw } = formation;
 
   return (
-    <div className="bg-pitch-light-green p-4 relative">
+    <div className="bg-pitch-light-green p-2 pt-6 relative">
+      <p className="absolute text-white top-0 left-5 font-bold tracking-[.5rem]">{name}</p>
+
       <div className="min-w-full border-2 border-white relative overflow-hidden">
-       <PlayersContainer players={gk} lightGreen = {true}/>
-       <PlayersContainer players={df}/>
-       <PlayersContainer players={mf} lightGreen={true}/>
-       <PlayersContainer players={fw}/>
+        <PlayersContainer players={gk} lightGreen={true}  handlePlayerClick = {handlePlayerClick}/>
+        <PlayersContainer players={df}  handlePlayerClick = {handlePlayerClick}/>
+        <PlayersContainer players={mf} lightGreen={true}  handlePlayerClick = {handlePlayerClick}/>
+        {am != null && <PlayersContainer players={am}  handlePlayerClick = {handlePlayerClick}/>}
+        <PlayersContainer players={fw} lightGreen={am == null ? false : true}  handlePlayerClick = {handlePlayerClick}/>
 
-
-      
-       
-
-      
-
-          {/* corner flags */}
+        {/* corner flags */}
         <div className="min-w-[2rem] min-h-[2rem] absolute -top-3 -left-3 border-2 border-white rounded-full"></div>
         <div className="min-w-[2rem] min-h-[2rem] absolute -top-3 -right-3 border-2 border-white rounded-full"></div>
         {/* goal post */}
-        <div className="absolute min-w-[40%] lg:min-w-[20%] min-h-[20%] border-2 border-white -top-1 left-[50%] translate-x-[-50%]"></div>
+        <div
+          className={`absolute min-w-[40%] lg:min-w-[20%]  ${
+            am == null ? "min-h-[25%]" : "min-h-[20%]"
+          } border-2 border-white -top-1 left-[50%] translate-x-[-50%]`}
+        ></div>
         <div className="absolute min-w-[20%] lg:min-w-[10%] min-h-[10%] border-2 border-white -top-1 left-[50%] translate-x-[-50%]"></div>
-{/* center circle */}
+        {/* center circle */}
         <div className="absolute min-w-[4rem] min-h-[4rem] circle border-2 border-white rounded-full -bottom-12 left-[50%] translate-x-[-50%]"></div>
       </div>
     </div>

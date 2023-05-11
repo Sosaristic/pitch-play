@@ -17,6 +17,9 @@ const formations = [
   {id: 12, formationName: "352"},
   {id: 13, formationName: "3412"},
   {id: 14, formationName: "3421"},
+  {id: 15, formationName: "541"},
+
+
 
 ]
 
@@ -45,10 +48,10 @@ handleTeamFormation(formationName)
 
   return (
     <div>
-      <h1>Team Formation</h1>
+      <h1 className="text-lg mt-2 font-bold">Team Formation</h1>
       <div><PitchView /></div>
       <div className='mt-4'>
-        <h2 className='w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold'>Select Formation</h2>
+        <p className='w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold'>Select Formation</p>
       </div>
       <div className='flex flex-wrap gap-4  mt-4'>
       {formations?.map((item)=>{

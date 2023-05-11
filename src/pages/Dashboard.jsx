@@ -12,7 +12,7 @@ export default function Dashboard() {
           <DashboardHeader />
           <Outlet/>
         </div>
-        <div className='fixed bottom-0 left-0 right-0 lg:hidden'><BottomNav /></div>
+        <div className='fixed bottom-0 left-0 right-0 lg:hidden z-[100]'><BottomNav /></div>
     </main>
     </MyTeamDataProvider>
   )

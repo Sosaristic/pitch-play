@@ -59,7 +59,7 @@ body{
 
 
 .popover{
-  background-color: rgba(50, 43, 51, 0.9);
+  background-color: rgba(50, 43, 51, 0.8);
 }
 /* speed dial */
 .open-speed-dial{
@@ -171,5 +171,8 @@ body{
     .circle{
       clip-path: circle(50% at 50% 50%);
     }
-
+    /* change player modal  */
+.change-player-modal-shadow{
+  box-shadow: rgb(165, 165, 167, 0.5) -2px 20px 20px -10px;
+}
 }

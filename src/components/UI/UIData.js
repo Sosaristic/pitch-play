@@ -1,17 +1,22 @@
 export const homePlayers = [
-  { id: 1, pos: "gk", name: "degea", num: 1 },
-  { id: 2, pos: "df", name: "dalot", num: 2 },
-  { id: 3, pos: "df", name: "varane", num: 19 },
-  { id: 4, pos: "df", name: "martinez", num: 6 },
-  { id: 5, pos: "df", name: "shaw", num: 23 },
-  { id: 6, pos: "mf", name: "casimero", num: 18 },
-  { id: 7, pos: "mf", name: "erikson", num: 14 },
-  { id: 8, pos: "mf", name: "fernades", num: 8 },
-  { id: 9, pos: "mf", name: "anthony", num: 21 },
-  { id: 10, pos: "fw", name: "rashford", num: 10 },
-  { id: 11, pos: "fw", name: "sancho", num: 25 },
+  { id: 1, pos: "gk", name: "degea", num: 1, isCaptain: false },
+  { id: 2, pos: "df", name: "dalot", num: 2, isCaptain: false },
+  { id: 3, pos: "df", name: "varane", num: 19, isCaptain: false },
+  { id: 4, pos: "df", name: "martinez", num: 6, isCaptain: false },
+  { id: 5, pos: "df", name: "shaw", num: 23, isCaptain: false },
+  { id: 6, pos: "mf", name: "casimero", num: 18, isCaptain: false },
+  { id: 7, pos: "mf", name: "erikson", num: 14, isCaptain: false },
+  { id: 8, pos: "mf", name: "fernades", num: 8, isCaptain: true },
+  { id: 9, pos: "mf", name: "anthony", num: 21, isCaptain: false },
+  { id: 10, pos: "fw", name: "rashford", num: 10, isCaptain: false },
+  { id: 11, pos: "fw", name: "sancho", num: 25, isCaptain: false },
+  { id: 12, pos: "gk", name: "butland", num: 31, isCaptain: false },
+  { id: 13, pos: "df", name: "maguire", num: 5, isCaptain: false },
+  { id: 14, pos: "df", name: "lindelof", num: 2, isCaptain: false },
+  { id: 15, pos: "df", name: "malacia", num: 12, isCaptain: false },
+  { id: 16, pos: "df", name: "w. bissaka", num: 29, isCaptain: false },
+  { id: 17, pos: "mf", name: "fred", num: 17, isCaptain: false },
+  { id: 18, pos: "mf", name: "mcTominay", num: 24, isCaptain: false },
+  { id: 19, pos: "fw", name: "gernacho", num: 49, isCaptain: false },
+  { id: 20, pos: "gk", name: "butland", num: 31, isCaptain: false },
 ];
-
-
-
-
