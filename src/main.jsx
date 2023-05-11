@@ -8,7 +8,7 @@ import Home from "./pages/Home.jsx";
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
-import { Matches, Overview, ScoreUpdater, MyTeam, MatchRoute } from "./components/Dashboard/";
+import { Matches, Overview, ScoreUpdater, MyTeam, MatchRoute, TeamLineUp, SquadList, TeamSettings, TeamFormation } from "./components/Dashboard/";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +40,17 @@ const router = createBrowserRouter([
           {path: "/dashboard/matches/live/:id", element: <ScoreUpdater />}
         ]
       },
-      { path: "/dashboard/my-team", element: <MyTeam /> },
+      { element: <MyTeam />, 
+    children: [
+      {path: "/dashboard/my-team", element: <TeamLineUp />},
+      {path: "/dashboard/my-team/squad-list", element: <SquadList />},
+      {path: "/dashboard/my-team/formation", element: <TeamFormation />},
+
+      {path: "/dashboard/my-team/settings", element: <TeamSettings />}
+
+
+    ]
+    },
     ],
   },
 ]);

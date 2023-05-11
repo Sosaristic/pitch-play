@@ -7,7 +7,7 @@ export default function MainSideNav() {
   return (
     <aside>
       <div className="relative">
-        <Link to="/" className="font-righteous text-primary px-8 text-[2rem] lg:text-[2.5rem] py-4">
+        <Link to="/" className="font-righteous text-primary text-[2rem] lg:text-[2.5rem] py-4">
           PitchPlay
         </Link>
       </div>

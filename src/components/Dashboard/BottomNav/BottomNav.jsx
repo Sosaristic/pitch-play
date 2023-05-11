@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { sideBarLinks } from "../Sidebar/SideBarLinks";
-import { useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function BottomNav() {
-  const { pathname } = useLocation();
   return (
     <div className="flex justify-around bg-black items-center py-2">
       {sideBarLinks?.map((item) => (
