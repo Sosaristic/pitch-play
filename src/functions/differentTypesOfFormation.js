@@ -81,9 +81,9 @@ export function fourThreeTwoOne(lineUp){
 export function fourFiveOne(lineUp){
   const gk = [...slicedLineUp(lineUp, 0, 1)] 
   const df = [...slicedLineUp(lineUp, 1, 5)] 
-  const mf = [...slicedLineUp(lineUp, 5, 9)] 
+  const mf = [...slicedLineUp(lineUp, 5, 10)] 
   const am = null
-  const fw = [...slicedLineUp(lineUp, 9, 11)]
+  const fw = [...slicedLineUp(lineUp, 10, 11)]
 
 
   return {gk, df, mf, am, fw}
