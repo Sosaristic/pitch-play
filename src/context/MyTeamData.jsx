@@ -1,51 +1,36 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import { homePlayers } from "../components/UI/UIData";
+import { teamPlayersReducer } from "../reducers/teamPlayersReducer";
 
 const TeamDataContext = createContext();
 export function MyTeamDataProvider({ children }) {
-  const [teamLineUp, setTeamLineUp] = useState(homePlayers);
+  const [teamLineUp, dispatch] = useReducer(teamPlayersReducer, homePlayers);
   const [teamFormation, setTeamFormation] = useState("442");
   const [playerModal, setPlayerModal] = useState(false);
   const [isSwapping, setIsSwapping] = useState(false);
-  
-
+  const [showNotification, setShowNotification] = useState(false)
 
   const handleTeamFormation = (formation) => {
     setTeamFormation(formation);
   };
 
   function makeCaptain(id) {
-    const removeAllCaptains = teamLineUp?.map((item) => {
-      return { ...item, isCaptain: false };
+    dispatch({
+      type: "MAKE_CAPTAIN",
+      playerID: id,
     });
 
-    const setCaptain = removeAllCaptains.map((item) => {
-      if (item.id === id) {
-        return { ...item, isCaptain: true };
-      }
-      return item;
-    });
-
-    setTeamLineUp(setCaptain);
     handlePlayerModal(false);
   }
 
-  function indicatePlayerToSwap(id){
+  function indicatePlayerToSwap(id) {
+    dispatch({
+      type: "PLAYER_SWAP_INDICATOR",
+      playerID: id,
+    });
 
-
-const setSwapIndicator = teamLineUp?.map((item)=>{
-  if(item.id === id){
-  
-    return {...item, swapColor: true}
-  }
-  return item
-})
-
-
-setTeamLineUp(setSwapIndicator)
-setIsSwapping(true)
-setPlayerModal(false)
-
+    setIsSwapping(true);
+    setPlayerModal(false);
   }
 
   function handlePlayerModal(state) {
@@ -53,27 +38,22 @@ setPlayerModal(false)
   }
 
   function swapPlayers(playerOneId, playerTwoId) {
-    const firstPlayerDetails = teamLineUp?.find((item)=>item.id === playerOneId)
-    const secondPlayerDetails = teamLineUp?.find((item)=>item.id === playerTwoId)
-const firstPlayerIndex = teamLineUp.indexOf(firstPlayerDetails)
-const secondPlayerIndex = teamLineUp.indexOf(secondPlayerDetails)
-const lineUpCopy = [...teamLineUp]
-lineUpCopy[firstPlayerIndex]= secondPlayerDetails
-lineUpCopy[secondPlayerIndex] = firstPlayerDetails
-
-const resetSwapColors = lineUpCopy.map((item)=>{
-  return {...item, swapColor: false}
-})
-setTeamLineUp(resetSwapColors)
-
+    dispatch({
+      type: "SWAP_PLAYERS",
+      playerOneId,
+      playerTwoId,
+    });
   }
 
-  function setPlayersSwapableIndicator(id) {
-    console.log(id);
-    indicatePlayerToSwap(id)
+  
+  function resetSwappingIndicators() {
+    dispatch({
+      type: "RESET_SWAPPING_INDICATOR",
+    });
   }
-
- 
+function removePlayer(playerID){
+console.log(playerID);
+}
   const value = {
     teamLineUp,
     teamFormation,
@@ -81,12 +61,14 @@ setTeamLineUp(resetSwapColors)
     makeCaptain,
     playerModal,
     handlePlayerModal,
-    setPlayersSwapableIndicator,
     isSwapping,
-    swapPlayers, 
+    swapPlayers,
     setIsSwapping,
-    setTeamLineUp
-
+    resetSwappingIndicators,
+    indicatePlayerToSwap,
+    removePlayer,
+    showNotification,
+    setShowNotification
   };
   return <TeamDataContext.Provider value={value}>{children}</TeamDataContext.Provider>;
 }

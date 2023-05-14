@@ -21,7 +21,7 @@ capitalize relative cursor-default ${
               </div>
             )}
           </div>
-          <p className="text-[.6rem] md:text-[.7rem] lg:text-lg z-10">{player.name}</p>
+          <p className="vs:text-[.6rem] sm:text-[.8rem] lg:text-lg z-10">{player.name}</p>
         </div>
       ) : (
         <div
@@ -37,7 +37,7 @@ capitalize relative cursor-default ${
               </div>
             )}
           </div>
-          <p className="text-[.6rem] md:text-[.7rem] lg:text-lg z-10">{player.name}</p>
+          <p className="vs:text-[.6rem] sm:text-[.8rem] lg:text-lg z-10">{player.name}</p>
         </div>
       )}
     </div>

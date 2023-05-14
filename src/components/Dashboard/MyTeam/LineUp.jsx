@@ -7,9 +7,6 @@ import { PlayerCard } from "../../UI/PitchView";
 import ChangePlayerModal from "./ChangePlayerModal";
 
 export default function LineUp() {
-
-
-  
   const [displaySwapModal, setDisplaySwapModal] = useState(false);
   const modalRef = useRef();
   const firstPlayerId = useRef(null);
@@ -21,26 +18,21 @@ export default function LineUp() {
     playerModal,
     isSwapping,
     handlePlayerModal,
-    setPlayersSwapableIndicator,
+    indicatePlayerToSwap,
     swapPlayers,
     setIsSwapping,
-    setTeamLineUp
-
-
+    resetSwappingIndicators,
   } = useTeamData();
-  useLayoutEffect(()=>{
-    resetValuesToDefault()
-    const removeSwapColor = teamLineUp?.map((item)=>{
-      return {...item, swapColor: false}
-    })
-    setTeamLineUp(removeSwapColor)
-   
-  }, [])
 
+  useLayoutEffect(() => {
+    resetValuesToDefault();
+    resetSwappingIndicators();
+  }, []);
 
   const [nameForModal, setNameForModal] = useState("Player Name");
 
   const substitutes = teamLineUp.slice(11, teamLineUp.length + 1);
+
   const handlePlayerClick = (id) => {
     const playerData = teamLineUp?.find((item) => item.id == id);
     setNameForModal(playerData.name);
@@ -52,7 +44,6 @@ export default function LineUp() {
       secondPlayerId.current = id;
       const playerOneName = teamLineUp?.find((item) => item.id == firstPlayerId.current);
       const playerTwoName = teamLineUp?.find((item) => item.id == secondPlayerId.current);
-
 
       setNameForModal(`${playerOneName.name} ${playerTwoName.name}`);
 
@@ -69,27 +60,23 @@ export default function LineUp() {
     makeCaptain(firstPlayerId?.current);
   };
 
-
-  function showSwapIndicator(){
-setPlayersSwapableIndicator(firstPlayerId?.current)
-
+  function showSwapIndicator() {
+    indicatePlayerToSwap(firstPlayerId?.current);
   }
 
-  function handleSwapPlayers(){
-    swapPlayers(firstPlayerId.current, secondPlayerId.current)
-    resetValuesToDefault()
+  function handleSwapPlayers() {
+    swapPlayers(firstPlayerId.current, secondPlayerId.current);
+    resetValuesToDefault();
   }
 
-  function resetValuesToDefault(){
-    setDisplaySwapModal(false)
-    setNameForModal("player name")
-    firstPlayerId.current = null
-    secondPlayerId.current = null
-    handlePlayerModal(false)
-    setIsSwapping(false)
-   
+  function resetValuesToDefault() {
+    setDisplaySwapModal(false);
+    setNameForModal("player name");
+    firstPlayerId.current = null;
+    secondPlayerId.current = null;
+    handlePlayerModal(false);
+    setIsSwapping(false);
   }
- 
 
   return (
     <div className="">
@@ -122,10 +109,10 @@ setPlayersSwapableIndicator(firstPlayerId?.current)
           closeModal={closePlayerModal}
           modalRef={modalRef}
           makeCaptain={handleMakeCaptain}
-          firstPlayerId = {firstPlayerId.current}
+          firstPlayerId={firstPlayerId.current}
           swapIndicator={showSwapIndicator}
           swapButton={displaySwapModal}
-          swapPlayers = {handleSwapPlayers}
+          swapPlayers={handleSwapPlayers}
         />
       )}
     </div>
