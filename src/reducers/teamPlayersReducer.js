@@ -20,7 +20,6 @@ export function teamPlayersReducer(teamPlayers, action){
         return resetSwapColors
         }
         case "RESET_SWAPPING_INDICATOR": {
-            console.log("hello")
             const removeSwapColor = teamPlayers?.map((item)=>{
                 return {...item, swapColor: false}
               })

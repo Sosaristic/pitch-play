@@ -25,7 +25,6 @@ export default function LineUp() {
   } = useTeamData();
 
   useLayoutEffect(() => {
-    console.log("layout effect");
     resetValuesToDefault();
     resetSwappingIndicators();
   }, []);
@@ -33,7 +32,7 @@ export default function LineUp() {
   const [nameForModal, setNameForModal] = useState("Player Name");
 
   const substitutes = teamLineUp.slice(11, teamLineUp.length + 1);
-  
+
   const handlePlayerClick = (id) => {
     const playerData = teamLineUp?.find((item) => item.id == id);
     setNameForModal(playerData.name);
@@ -79,7 +78,6 @@ export default function LineUp() {
     setIsSwapping(false);
   }
 
-  console.log(teamLineUp);
   return (
     <div className="">
       <h1 className="text-lg mt-2 font-bold">Team Line Ups</h1>
