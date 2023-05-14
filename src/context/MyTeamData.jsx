@@ -52,7 +52,11 @@ export function MyTeamDataProvider({ children }) {
     });
   }
 function removePlayer(playerID){
-console.log(playerID);
+  console.log(playerID);
+dispatch({
+  type: "REMOVE_PLAYER",
+  playerID,
+})
 }
   const value = {
     teamLineUp,
