@@ -11,7 +11,7 @@ const myTeamNavLinks = [
 export default function MyTeamNav() {
   const {pathname} = useLocation()
   return (
-    <div className="flex  bg-grey w-full  ">
+    <div className="flex  bg-grey w-full  gap-[1px]">
       {myTeamNavLinks?.map((item) => {
         return (
           <Link

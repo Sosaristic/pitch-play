@@ -8,6 +8,7 @@ export function MyTeamDataProvider({ children }) {
   const [teamFormation, setTeamFormation] = useState("442");
   const [playerModal, setPlayerModal] = useState(false);
   const [isSwapping, setIsSwapping] = useState(false);
+  const [showNotification, setShowNotification] = useState(false)
 
   const handleTeamFormation = (formation) => {
     setTeamFormation(formation);
@@ -50,7 +51,9 @@ export function MyTeamDataProvider({ children }) {
       type: "RESET_SWAPPING_INDICATOR",
     });
   }
-
+function removePlayer(playerID){
+console.log(playerID);
+}
   const value = {
     teamLineUp,
     teamFormation,
@@ -62,7 +65,10 @@ export function MyTeamDataProvider({ children }) {
     swapPlayers,
     setIsSwapping,
     resetSwappingIndicators,
-    indicatePlayerToSwap
+    indicatePlayerToSwap,
+    removePlayer,
+    showNotification,
+    setShowNotification
   };
   return <TeamDataContext.Provider value={value}>{children}</TeamDataContext.Provider>;
 }
