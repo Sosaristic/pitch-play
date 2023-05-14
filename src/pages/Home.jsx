@@ -5,6 +5,7 @@ export default function Home() {
     
   return (
     <main className="">
+      
       <Chips />
       <section className="mt-8">
         {matchData.map((item) => {
