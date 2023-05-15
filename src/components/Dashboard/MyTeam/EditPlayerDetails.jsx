@@ -48,7 +48,7 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
   }
   return (
     <PopOver>
-      <form className=" min-h-[10rem] text-black max-h-fit flex flex-col w-[80%] lg:w-[40%] py-3  bg-white rounded-md relative px-4">
+      <form className=" min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] lg:w-[40%] py-3  bg-white rounded-md relative px-4">
         <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">Player Details</p>
         <div className="mt-2">
           <TextField
@@ -75,10 +75,10 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
           <div className="flex-1 h-full relative">
             <TextField
               value={formValues.playerNumber}
-              placeholder="player number"
+              placeholder="Number"
               name="playerNumber"
               onChange={handleOnChange}
-              label="Player Number"
+              label="Number"
               type="number"
             />
           </div>
