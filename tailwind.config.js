@@ -25,7 +25,11 @@ export default {
       backgroundImage: {
         // "home-hero": "url('/assets/images/football-hero.jpg')"
         "football-field": "url('/src/assets/svg/football-field.svg')"
-      }
+      },
+      boxShadow: {
+        "user-select-shadow": "0px 0px 2px 2px #1d8e66",
+        "services-card": "0px 0px 10px 8px #f9f9f9",
+      },
     },
   },
   plugins: [],
