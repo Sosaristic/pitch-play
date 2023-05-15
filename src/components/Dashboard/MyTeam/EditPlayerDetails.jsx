@@ -48,7 +48,7 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
   }
   return (
     <PopOver>
-      <form className=" min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] lg:w-[40%] py-3  bg-white rounded-md relative px-4">
+      <form className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
         <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">Player Details</p>
         <div className="mt-2">
           <TextField
@@ -63,7 +63,7 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
             errorMsg="Invalid name"
           />
         </div>
-        <div className="flex items-end gap-2 items-end mt-2">
+        <div className="flex items-end gap-2 mt-2">
           <div className="flex-1">
             <Select
               listData={position}
