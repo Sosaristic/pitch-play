@@ -52,12 +52,21 @@ export function MyTeamDataProvider({ children }) {
     });
   }
 function removePlayer(playerID){
-  console.log(playerID);
 dispatch({
   type: "REMOVE_PLAYER",
   playerID,
 })
+
+
 }
+
+function editPlayersDetails(editDetails){
+dispatch({
+  type: "EDIT_PLAYER_DETAILS",
+  editDetails
+})
+}
+
   const value = {
     teamLineUp,
     teamFormation,
@@ -72,7 +81,8 @@ dispatch({
     indicatePlayerToSwap,
     removePlayer,
     showNotification,
-    setShowNotification
+    setShowNotification,
+    editPlayersDetails
   };
   return <TeamDataContext.Provider value={value}>{children}</TeamDataContext.Provider>;
 }

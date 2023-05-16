@@ -51,6 +51,7 @@ export default function SquadList() {
   return name
 
   }
+  // console.log(teamLineUp);
   return (
     <div>
       <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">

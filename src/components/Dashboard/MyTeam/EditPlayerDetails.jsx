@@ -9,22 +9,23 @@ import useClickAwayListener from "../../../hooks/useClickAway";
 
 
 const position = [
-  { id: 1, name: "GoalKeeper" },
-  { id: 2, name: "Defender" },
-  { id: 3, name: "Midfielder" },
-  { id: 4, name: "Forward" },
+  { id: 1, name: "GoalKeeper", value: "gk" },
+  { id: 2, name: "Defender", value: "df" },
+  { id: 3, name: "Midfielder", value: "mf" },
+  { id: 4, name: "Forward", value: "fw" },
 ];
 
 export default function EditPlayerDetails({ closeAddPlayerModal, playerId, isEditing }) {
 const playerEditModalRef = useRef()
   useClickAwayListener(playerEditModalRef, closeAddPlayerModal)
-  const { teamLineUp } = useTeamData();
+  const { teamLineUp, editPlayersDetails } = useTeamData();
   const playerDetails = getPlayerDetails(playerId, teamLineUp);
-  console.log(playerDetails);
   const [formValues, setFormValues] = useState({
     playerName: "",
     playerNumber: "",
   });
+  const [selectPlayerPosition, setSelectPlayerPosition] = useState(position[0]);
+  const [numberTaken, setNumberTaken] = useState(false);
 
   useEffect(() => {
     checkNumberAvailability();
@@ -40,8 +41,7 @@ const playerEditModalRef = useRef()
     }
   }, [isEditing]);
 
-  const [selectValue, setSelectValue] = useState(position[0]);
-  const [numberTaken, setNumberTaken] = useState(false);
+ 
 
   const handleOnChange = ({ target: { name, value } }) => {
     setFormValues({
@@ -51,7 +51,7 @@ const playerEditModalRef = useRef()
   };
 
   const handleSelectValue = (e) => {
-    setSelectValue(e);
+    setSelectPlayerPosition(e);
   };
 
   function checkNumberAvailability() {
@@ -76,9 +76,20 @@ const playerEditModalRef = useRef()
       }
     }
   }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+if(isEditing){
+const editDetails = {
+  ...formValues, position: selectPlayerPosition.value, playerId
+}
+editPlayersDetails(editDetails)
+closeAddPlayerModal()
+}
+  }
   return (
     <PopOver>
-      <form ref={playerEditModalRef} className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
+      <form onSubmit={handleSubmit} ref={playerEditModalRef} className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
         <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">
           Player Details
         </p>
@@ -99,7 +110,7 @@ const playerEditModalRef = useRef()
           <div className="flex-1">
             <Select
               listData={position}
-              value={selectValue}
+              value={selectPlayerPosition}
               onChange={handleSelectValue}
               name="playerPosition"
             />
@@ -134,9 +145,10 @@ const playerEditModalRef = useRef()
             Cancel
           </button>
           <button
-            type="button"
-            className="border border-primary bg-primary text-white rounded-lg px-4 py-1 hover:border-hover"
-            onClick={closeAddPlayerModal}
+            type="submit"
+            disabled= {numberTaken || formValues.playerName == ""}
+            className="border border-primary bg-primary disabled:bg-grey disabled:cursor-not-allowed text-white rounded-lg px-4 py-1 hover:border-hover"
+            
           >
             Submit
           </button>

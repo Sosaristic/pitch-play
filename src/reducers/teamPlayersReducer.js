@@ -5,7 +5,15 @@ export function teamPlayersReducer(teamPlayers, action){
             
         }
         case "EDIT_PLAYER_DETAILS": {
+          const {playerName, playerNumber, position, playerId} = action.editDetails
           
+          const changedDetails = teamPlayers?.map((player)=>{
+            if(player.id == playerId){
+              return {...player, name: playerName, num: +(playerNumber) , pos: position}
+            }
+            return player
+          })
+          return changedDetails
         }
         case "SWAP_PLAYERS": {
             const firstPlayerDetails = teamPlayers?.find((item)=>item.id === action.playerOneId)
