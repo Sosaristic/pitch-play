@@ -4,7 +4,9 @@ export function teamPlayersReducer(teamPlayers, action){
             return teamPlayers.filter((item)=>item.id !== action.playerID)
             
         }
-        case "EDIT_PLAYER_DETAILS": {}
+        case "EDIT_PLAYER_DETAILS": {
+          
+        }
         case "SWAP_PLAYERS": {
             const firstPlayerDetails = teamPlayers?.find((item)=>item.id === action.playerOneId)
             const secondPlayerDetails = teamPlayers?.find((item)=>item.id === action.playerTwoId)

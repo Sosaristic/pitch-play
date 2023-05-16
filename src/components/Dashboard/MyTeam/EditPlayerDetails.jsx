@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PopOver } from "../../UI";
 import { TextField, Select } from "../../Form";
 import { regEx } from "../../Form/regex";
 import { useTeamData } from "../../../context/MyTeamData";
+import { getPlayerDetails } from "../../../functions/helperFunctions";
+import {TfiClose} from "react-icons/tfi"
+import useClickAwayListener from "../../../hooks/useClickAway";
+
 
 const position = [
   { id: 1, name: "GoalKeeper" },
@@ -11,9 +15,12 @@ const position = [
   { id: 4, name: "Forward" },
 ];
 
-export default function EditPlayerDetails({closeAddPlayerModal}) {
+export default function EditPlayerDetails({ closeAddPlayerModal, playerId, isEditing }) {
+const playerEditModalRef = useRef()
+  useClickAwayListener(playerEditModalRef, closeAddPlayerModal)
   const { teamLineUp } = useTeamData();
-
+  const playerDetails = getPlayerDetails(playerId, teamLineUp);
+  console.log(playerDetails);
   const [formValues, setFormValues] = useState({
     playerName: "",
     playerNumber: "",
@@ -22,6 +29,16 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
   useEffect(() => {
     checkNumberAvailability();
   }, [formValues]);
+
+  useEffect(() => {
+    if (isEditing) {
+      setFormValues({
+        ...formValues,
+        playerName: playerDetails.name,
+        playerNumber: playerDetails.num,
+      });
+    }
+  }, [isEditing]);
 
   const [selectValue, setSelectValue] = useState(position[0]);
   const [numberTaken, setNumberTaken] = useState(false);
@@ -38,18 +55,33 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
   };
 
   function checkNumberAvailability() {
-    console.log(formValues.playerNumber);
-    const isNumberExist = teamLineUp.some((item) => item.num == formValues.playerNumber);
-    if (isNumberExist && formValues.playerNumber !== "") {
-      setNumberTaken(true);
-    } else {
-      setNumberTaken(false);
+    const playerDetails = getPlayerDetails(playerId, teamLineUp);
+    if (isEditing) {
+      const isNumberExist = teamLineUp.some(
+        (player) =>
+          player.num == formValues.playerNumber && formValues.playerNumber != playerDetails.num
+      );
+      if (isNumberExist && formValues.playerNumber !== "") {
+        setNumberTaken(true);
+      } else {
+        setNumberTaken(false);
+      }
+    }
+    else {
+      const isNumberExist = teamLineUp.some((player)=>player.num == formValues.playerNumber)
+      if (isNumberExist && formValues.playerNumber !== "") {
+        setNumberTaken(true);
+      } else {
+        setNumberTaken(false);
+      }
     }
   }
   return (
     <PopOver>
-      <form className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
-        <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">Player Details</p>
+      <form ref={playerEditModalRef} className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
+        <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">
+          Player Details
+        </p>
         <div className="mt-2">
           <TextField
             type="text"
@@ -80,17 +112,36 @@ export default function EditPlayerDetails({closeAddPlayerModal}) {
               onChange={handleOnChange}
               label="Number"
               type="number"
+              regex={regEx.Number}
             />
           </div>
         </div>
-        
-          <p className={`text-black self-end mr-4 text-[.8rem] ${numberTaken? "visible" : "invisible"} text-red-500`}>number already taken</p>
-        
+
+        <p
+          className={`text-black self-end mr-4 text-[.8rem] ${
+            numberTaken ? "visible" : "invisible"
+          } text-red-500`}
+        >
+          number already taken
+        </p>
 
         <div className="flex justify-end mt-4 gap-4">
-          <button type="button" className="border border-primary rounded-lg px-4 py-1 text-primary hover:bg-hover hover:text-white" onClick={closeAddPlayerModal}>Cancel</button>
-          <button type="button" className="border border-primary bg-primary text-white rounded-lg px-4 py-1 hover:border-hover" onClick={closeAddPlayerModal}>Submit</button>
+          <button
+            type="button"
+            className="border border-primary rounded-lg px-4 py-1 text-primary hover:bg-hover hover:text-white"
+            onClick={closeAddPlayerModal}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="border border-primary bg-primary text-white rounded-lg px-4 py-1 hover:border-hover"
+            onClick={closeAddPlayerModal}
+          >
+            Submit
+          </button>
         </div>
+        <div className="absolute text-[1.3rem] top-2 right-2" onClick={closeAddPlayerModal}><TfiClose arial-visibility="hidden"/></div>
       </form>
     </PopOver>
   );

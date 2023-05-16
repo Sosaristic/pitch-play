@@ -41,12 +41,12 @@ const PlayerNumber = ({ num }) => {
         </p>
   
         <div className="flex-1 flex text-[1.3rem] md:text-[1.6rem]  justify-evenly">
-          <button type="button" className="text-hover lg:hover:text-inherit" onClick={openAddPlayerDialog}>
+          <button type="button" className="text-primary lg:hover:text-inherit" onClick={()=>openAddPlayerDialog(id)}>
             <AiOutlineEdit />
           </button>
           <button
             type="button"
-            className="text-hover lg:hover:text-inherit"
+            className="text-primary lg:hover:text-inherit"
             onClick={() => openDialog(id)}
           >
             <MdOutlineDelete />

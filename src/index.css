@@ -199,7 +199,7 @@ body{
 
 /* player details editor */
 .player-details{
-animation: slide-up .3s linear .1s   forwards;
+animation: slide-up .2s linear .1s   forwards;
 }
 
 @keyframes slide-up {

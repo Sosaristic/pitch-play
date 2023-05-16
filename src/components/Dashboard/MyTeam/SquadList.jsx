@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTeamData } from "../../../context/MyTeamData";
 
-
 import { Notification, ConfirmationDialog } from "../../UI";
 import SquadListCard from "./SquadListCard";
 import EditPlayerDetails from "./EditPlayerDetails";
+import { getPlayerDetails } from "../../../functions/helperFunctions";
 
 
 export default function SquadList() {
@@ -19,7 +19,7 @@ export default function SquadList() {
     return () => clearTimeout(timeOut);
   }, [showNotification]);
 
-  const closeDialog = () => {
+  const closeConfirmationDialog = () => {
     setDisplayConfirmation(false);
   };
 
@@ -35,14 +35,21 @@ export default function SquadList() {
 
   const handleDialogConfrim = () => {
     removePlayer(playerId?.current);
-    closeDialog();
+    closeConfirmationDialog();
   };
 
-  const openAddPlayerDialog = ()=>{
+  const openAddPlayerDialog = (id)=>{
+    playerId.current = id
     setShowAddPlayersModal(true)
   }
   const closeAddPlayersDialog = ()=>{
     setShowAddPlayersModal(false)
+  }
+  
+  const playerNameToDelete = ()=>{
+  const {name} =  getPlayerDetails(playerId.current, teamLineUp)
+  return name
+
   }
   return (
     <div>
@@ -55,18 +62,19 @@ export default function SquadList() {
             key={item.id}
             playerData={item}
             removePlayer={removePlayer}
+            // editPlayer = {handleEditAddPlayer}
             openDialog={openDialog}
             openAddPlayerDialog={openAddPlayerDialog}
           />
         ))}
       </div>
-{showAddPlayersModal &&  <EditPlayerDetails closeAddPlayerModal={closeAddPlayersDialog}/>}
+{showAddPlayersModal &&  <EditPlayerDetails closeAddPlayerModal={closeAddPlayersDialog} playerId={playerId?.current} isEditing={true}/>}
      
       {showNotification && <Notification />}
       {displayConfirmation && (
         <ConfirmationDialog
-          closeDialog={closeDialog}
-          message="Remove player from Team Squad"
+          closeDialog={closeConfirmationDialog}
+          message={`Remove ${playerNameToDelete()} from Team Squad`}
           handleUpdate={handleDialogConfrim}
         />
       )}
