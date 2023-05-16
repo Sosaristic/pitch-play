@@ -28,15 +28,15 @@ const PlayerNumber = ({ num }) => {
     };
   
     return (
-      <div className="flex text-[.8rem] sm:text-[1.4rem] py-2 items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default">
+      <div className="flex text-[.8rem] sm:text-[1.4rem] py-2 font-poppins items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default">
         <div className="flex-1 flex justify-center">
           <PlayerNumber num={num} />
         </div>
-        <p className="flex-[2] text-center capitalize">{name}</p>
-        <p className="flex-[1] text-center hidden md:block capitalize">
+        <p className="flex-[2] text-center lg:text-[1 2rem] font-poppins capitalize">{name}</p>
+        <p className="flex-[1] text-center hidden md:block capitalize font-poppins">
           {setPlayerPositionLength(pos, "full")}
         </p>
-        <p className="flex-[1] text-center md:hidden capitalize">
+        <p className="flex-[1] text-center md:hidden capitalize font-poppins">
           {setPlayerPositionLength(pos, "short")}
         </p>
   
