@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import { PopOver } from "../../UI";
 import { TextField, Select } from "../../Form";
 import { regEx } from "../../Form/regex";
@@ -17,8 +17,9 @@ const position = [
 
 export default function EditPlayerDetails({ closeAddPlayerModal, playerId, isEditing }) {
 const playerEditModalRef = useRef()
+const id = useId()
   useClickAwayListener(playerEditModalRef, closeAddPlayerModal)
-  const { teamLineUp, editPlayersDetails } = useTeamData();
+  const { teamLineUp, editPlayersDetails, addPlayer } = useTeamData();
   const playerDetails = getPlayerDetails(playerId, teamLineUp);
   const [formValues, setFormValues] = useState({
     playerName: "",
@@ -85,6 +86,14 @@ const editDetails = {
 }
 editPlayersDetails(editDetails)
 closeAddPlayerModal()
+}
+
+else {
+  const playerData = {
+    name: formValues.playerName, num: formValues.playerNumber, id, pos: selectPlayerPosition.value
+  }
+  addPlayer(playerData)
+  closeAddPlayerModal()
 }
   }
   return (
