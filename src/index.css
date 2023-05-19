@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Righteous";
+  src: url("/src/assets/fonts/Righteous-Regular.ttf");
+}
+@font-face {
+  font-family: "Jost";
+  src: url("/src/assets/fonts/Jost-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/src/assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins-Regular.ttf");
+}
+
+
+
+@layer components{
+
+
+body{
+  background-color: black;
+  color: white;
+  scrollbar-color: red;
+}
+
+.match-active::before{
+  content: "";
+  position: absolute;
+  height: 80%;
+  width: .3rem;
+  background-color: #c74aae;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.lineup-clip-path{
+  clip-path: polygon(100% 34%, 68% 94%, 4% 94%, 44% 35%);
+}
+
+.summary-container{
+  box-shadow: 0px 0px 1px 0px gray;
+  padding: 4px 12px;
+}
+
+.teams-card{
+  box-shadow: 0px 0px 8px 0px rgb(234, 135, 238) inset;
+  background: linear-gradient(45deg, rgba(182, 131, 224, 0.585)0%, rgba(0,0,0,0.290) 74%, rgba(175, 160,178,0.400)98%);
+  border-top: 2px solid rgb(234, 135, 238);
+}
+
+/* dashboard side bar */
+
+
+.popover{
+  background-color: rgba(50, 43, 51, 0.8);
+}
+/* speed dial */
+.open-speed-dial{
+
+ height: 7rem;
+  transition: all .7s ease;
+}
+.close-speed-dial{
+  height: 0;
+  transition: all .7s ease;
+
+}
+/* modal */
+.match-modal{
+  animation: modal .2s linear .1s   forwards;
+}
+
+@keyframes modal {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+  
+}
+
+/* team selector */
+.team-selector{
+  position: relative;
+  color: white;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+ 
+  
+}
+.team-selector>div{
+  min-width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+  transition: all 1s ease;
+}
+
+.carousel-small-buttons{
+  background-color: grey;
+  border-radius: 50%;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #c74aae #c74aae transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #c74aae #c74aae;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: transparent transparent #c74aae #c74aae;
+
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+    /* clip path circle */
+    .circle{
+      clip-path: circle(50% at 50% 50%);
+    }
+    /* change player modal  */
+.change-player-modal-shadow{
+  box-shadow: rgb(165, 165, 167, 0.5) -2px 20px 20px -10px;
+}
+
+/* notification */
+
+.notification{
+  animation: slide-in 5s ease-out;
+}
+@keyframes slide-in {
+  0%, 15%{
+    top: -5rem;
+  }
+  15%{
+    top: 2rem;
+  }
+  75%{
+    top: 2rem
+  }
+  76%, 100%{
+    top: -5rem;
+  }
+  
+}
+
+/* player details editor */
+.player-details{
+animation: slide-up .2s linear .1s   forwards;
+}
+
+@keyframes slide-up {
+  from{
+    bottom: -50%;
+  }
+  to{
+    bottom: 20%;
+  }
+}
+}
