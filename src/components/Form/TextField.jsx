@@ -24,7 +24,7 @@ export default function TextField({ type, label, value, regex, errorMsg, id, pla
 
   return (
     <div className=" relative  w-full input">
-      <label htmlFor="name" className=" bg-white left-4 text-md px-1 text-gray-500">
+      <label htmlFor="name" className=" left-4 text-md px-1 text-gray-500 font-poppins font-[900]">
         {label}
       </label>
       <div className="">
@@ -38,7 +38,7 @@ export default function TextField({ type, label, value, regex, errorMsg, id, pla
           onKeyUp={onChangeValidation}
           onBlur={onBlurValidation}
           placeholder={placeholder}
-          className={`text-[1rem] caret-primary text-black pl-2 outline-none h-[3rem] w-full ${
+          className={`text-[1rem] caret-primary font-poppins text-black pl-2 outline-none h-[3rem] w-full ${
             displayError ? "focus:border-red-500" : "focus:border-primary"
           }  border  rounded-md`}
         />
