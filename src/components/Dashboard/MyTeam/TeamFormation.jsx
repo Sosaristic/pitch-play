@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import {PitchView} from "../../UI"
 import { useTeamData } from '../../../context/MyTeamData'
 
@@ -25,7 +25,7 @@ const formations = [
 
 function FormationCard({values, activeIndex, handleActiveIndex}){
 
-  return <button className={` px-2 py-1 tracking-[1rem] rounded-2xl border-2 lg:hover:bg-hover
+  return <button className={` text-center py-1 tracking-[.5rem] lg:tracking-[1rem] text-[.8rem] w-[27%] lg:w-1/6 rounded-2xl border-2 lg:hover:bg-hover
    lg:hover:border-hover font-[600] ${activeIndex === values.id?  "bg-primary border-primary" : "bg-gray border-gray-500"}`}
    onClick={()=>handleActiveIndex(values.id, values.formationName)}
    >
@@ -45,7 +45,6 @@ handleTeamFormation(formationName)
 
 }
 
-
   return (
     <div>
       <h1 className="text-lg mt-2 font-bold">Team Formation</h1>
@@ -53,7 +52,7 @@ handleTeamFormation(formationName)
       <div className='mt-4'>
         <p className='w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold'>Select Formation</p>
       </div>
-      <div className='flex flex-wrap gap-4  mt-4'>
+      <div className='flex flex-wrap gap-4 justify-center  mt-4'>
       {formations?.map((item)=>{
         return <FormationCard key={item.id} values = {item} activeIndex={activeChip} handleActiveIndex={handleActiveIndex}/>
       })}
