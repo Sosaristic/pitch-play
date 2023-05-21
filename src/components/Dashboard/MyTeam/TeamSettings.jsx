@@ -36,7 +36,7 @@ console.log(teamData);
         Team Settings
       </h2>
 
-      <form className="mt-4 flex flex-col gap-4 items-center md:w-[70%] lg:w-[60%] font-poppins mx-auto text-gray-300">
+      <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4 items-center md:w-[70%] lg:w-[60%] font-poppins mx-auto text-gray-300">
         <div className="w-full">
           <TextField label="Team Name" value={teamData.teamName} name="teamName" onChange={handleInputChange} regex={regEx.name}/>
         </div>
@@ -48,9 +48,9 @@ console.log(teamData);
           <div className="flex justify-between">
             {colorDetails?.map((item) => {
               return (
-                <div key={item.id} className="flex flex-col items-center">
+                <div key={item.id} className="flex flex-col items-center gap-2">
                   <p className="text-center text-[.8rem] md:text-[1rem]">{item.title}</p>
-                  <div className="text-[5rem]">
+                  <div className={`text-[5rem] outline-none border-none`} style={{color: item.value}}>
                     <IoMdShirt />
                   </div>
                   <div>
