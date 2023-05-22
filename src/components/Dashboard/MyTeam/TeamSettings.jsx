@@ -31,7 +31,7 @@ e.preventDefault()
 console.log(teamData);
 }
   return (
-    <div className="relative">
+    <div className="relative mt-2">
       <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold">
         Team Settings
       </h2>

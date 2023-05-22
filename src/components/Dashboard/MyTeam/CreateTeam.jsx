@@ -25,7 +25,7 @@ console.log(firstFormValues);
 navigate("/dashboard/my-team", {replace: true})
   }
   return (
-    <div className="px-4 pb-[7rem] pt-[2rem]">
+    <div className="px-4 pb-[7rem]">
       <div>
         {steps === 1 && (
           <div>
