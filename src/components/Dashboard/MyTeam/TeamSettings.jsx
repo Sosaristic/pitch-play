@@ -4,6 +4,7 @@ import { regEx } from "../../Form/regex";
 
 import { TextField } from "../../Form";
 import { Button } from "../../UI";
+
 export default function TeamSettings() {
 const [teamData, setTeamData] = useState({
   teamName: "Manchester United",
@@ -64,7 +65,7 @@ console.log(teamData);
           </div>
         </div>
 
-        <div className="w-[80%]  md:w-[40%] mt-8"><Button value="Submit"/></div>
+        <button type="submit" className="text-[1.2rem] mt-8 bg-primary rounded-lg px-6 py-1 transition-colors duration-300 lg:hover:bg-hover ">Save</button>
       </form>
     </div>
   );

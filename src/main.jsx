@@ -8,7 +8,18 @@ import Home from "./pages/Home.jsx";
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
-import { Matches, Overview, ScoreUpdater, MyTeam, MatchRoute, TeamLineUp, SquadList, TeamSettings, TeamFormation } from "./components/Dashboard/";
+import {
+  Matches,
+  Overview,
+  ScoreUpdater,
+  MyTeam,
+  MatchRoute,
+  TeamLineUp,
+  TeamSettings,
+  TeamFormation,
+  CreateTeam,
+  TeamSquad,
+} from "./components/Dashboard/";
 
 const router = createBrowserRouter([
   {
@@ -33,24 +44,23 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard/overview", element: <Overview /> },
       {
-        
         element: <MatchRoute />,
         children: [
-          {path: "/dashboard/matches", element: <Matches />},
-          {path: "/dashboard/matches/live/:id", element: <ScoreUpdater />}
-        ]
+          { path: "/dashboard/matches", element: <Matches /> },
+          { path: "/dashboard/matches/live/:id", element: <ScoreUpdater /> },
+        ],
       },
-      { element: <MyTeam />, 
-    children: [
-      {path: "/dashboard/my-team", element: <TeamLineUp />},
-      {path: "/dashboard/my-team/squad-list", element: <SquadList />},
-      {path: "/dashboard/my-team/formation", element: <TeamFormation />},
+      { path: "/dashboard/my-team/create-team", element: <CreateTeam /> },
 
-      {path: "/dashboard/my-team/settings", element: <TeamSettings />}
-
-
-    ]
-    },
+      {
+        element: <MyTeam />,
+        children: [
+          { path: "/dashboard/my-team", element: <TeamLineUp /> },
+          { path: "/dashboard/my-team/squad-list", element: <TeamSquad /> },
+          { path: "/dashboard/my-team/formation", element: <TeamFormation /> },
+          { path: "/dashboard/my-team/settings", element: <TeamSettings /> },
+        ],
+      },
     ],
   },
 ]);

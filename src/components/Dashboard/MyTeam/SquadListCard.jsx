@@ -28,7 +28,7 @@ const PlayerNumber = ({ num }) => {
     };
   
     return (
-      <div className="flex text-[.8rem] sm:text-[1.4rem] py-2 font-poppins items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default">
+      <div className="flex text-[.8rem] sm:text-[1.2rem] py-2 font-poppins items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default">
         <div className="flex-1 flex justify-center">
           <PlayerNumber num={num} />
         </div>

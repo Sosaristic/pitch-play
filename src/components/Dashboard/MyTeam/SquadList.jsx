@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useTeamData } from "../../../context/MyTeamData";
 
 import { Notification, ConfirmationDialog } from "../../UI";
 import SquadListCard from "./SquadListCard";
@@ -7,11 +6,18 @@ import EditPlayerDetails from "./EditPlayerDetails";
 import { getPlayerDetails } from "../../../functions/helperFunctions";
 import { BsPlusLg } from "react-icons/bs";
 
-export default function SquadList() {
-  const { teamLineUp, removePlayer, showNotification, setShowNotification } = useTeamData();
+export default function SquadList({teamContext, setMinTeamLength}) {
+  const {
+    teamLineUp,
+    removePlayer,
+    showNotification,
+    setShowNotification,
+    editPlayersDetails,
+    addPlayer,
+  } = teamContext();
   const [displayConfirmation, setDisplayConfirmation] = useState(false);
   const [showEditPlayersModal, setShowEditPlayersModal] = useState(false);
-  const [showAddPlayersModal, setShowAddPlayersModal] = useState(false)
+  const [showAddPlayersModal, setShowAddPlayersModal] = useState(false);
   const playerId = useRef(null);
 
   console.log(teamLineUp);
@@ -27,7 +33,7 @@ export default function SquadList() {
   };
 
   const openDialog = (id) => {
-    if (teamLineUp.length <= 11) {
+    if (teamLineUp.length <= 11 && setMinTeamLength) {
       setShowNotification(true);
 
       return;
@@ -47,7 +53,14 @@ export default function SquadList() {
   };
   const closeAddPlayersDialog = () => {
     setShowEditPlayersModal(false);
-    setShowAddPlayersModal(false)
+    setShowAddPlayersModal(false);
+  };
+
+  const handleEditPlayer = (editedDetails) => {
+    editPlayersDetails(editedDetails);
+  };
+  const handleAddPlayer = (playerDetails) => {
+    addPlayer(playerDetails);
   };
 
   const playerNameToDelete = () => {
@@ -57,10 +70,8 @@ export default function SquadList() {
   // console.log(teamLineUp);
   return (
     <div>
-      <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">
-        Manage Squad
-      </h2>
-      <div className="mt-6 flex flex-col">
+    
+      <div className="mt-6 flex flex-col min-h-screen">
         {teamLineUp?.map((item) => (
           <SquadListCard
             key={item.id}
@@ -72,8 +83,9 @@ export default function SquadList() {
           />
         ))}
       </div>
-      <button  className="fixed bottom-20 lg:bottom-6 hover:scale-[1.2] transition-all duration-200 z-100 right-2 text-[2rem] h-[2.5rem]  w-[2.5rem] shadow-lg shadow-hover md:h-[3.5rem] md:w-[3.5rem] lg:h-[3.5rem] lg:w-[3.5rem] bg-primary flex items-center justify-center rounded-full"
-      onClick={()=>setShowAddPlayersModal(true)}
+      <button
+        className="fixed bottom-20 lg:bottom-6 hover:scale-[1.2] transition-all duration-200 z-100 right-2 text-[2rem] h-[2.5rem]  w-[2.5rem] shadow-lg shadow-hover md:h-[3.5rem] md:w-[3.5rem] lg:h-[3.5rem] lg:w-[3.5rem] bg-primary flex items-center justify-center rounded-full"
+        onClick={() => setShowAddPlayersModal(true)}
       >
         <BsPlusLg />
       </button>
@@ -83,13 +95,17 @@ export default function SquadList() {
           closeAddPlayerModal={closeAddPlayersDialog}
           playerId={playerId?.current}
           isEditing={true}
+          editPlayersDetails={handleEditPlayer}
+          lineUp={teamLineUp}
         />
       )}
-        {showAddPlayersModal && (
+      {showAddPlayersModal && (
         <EditPlayerDetails
           closeAddPlayerModal={closeAddPlayersDialog}
           playerId={playerId?.current}
-          
+          addPlayer={handleAddPlayer}
+          lineUp={teamLineUp}
+
         />
       )}
 

@@ -4,9 +4,8 @@ import { TextField, Select } from "../../Form";
 import { regEx } from "../../Form/regex";
 import { useTeamData } from "../../../context/MyTeamData";
 import { getPlayerDetails } from "../../../functions/helperFunctions";
-import {TfiClose} from "react-icons/tfi"
+import { TfiClose } from "react-icons/tfi";
 import useClickAwayListener from "../../../hooks/useClickAway";
-
 
 const position = [
   { id: 1, name: "GoalKeeper", value: "gk" },
@@ -15,12 +14,19 @@ const position = [
   { id: 4, name: "Forward", value: "fw" },
 ];
 
-export default function EditPlayerDetails({ closeAddPlayerModal, playerId, isEditing }) {
-const playerEditModalRef = useRef()
-const id = useId()
-  useClickAwayListener(playerEditModalRef, closeAddPlayerModal)
-  const { teamLineUp, editPlayersDetails, addPlayer } = useTeamData();
-  const playerDetails = getPlayerDetails(playerId, teamLineUp);
+export default function EditPlayerDetails({
+  closeAddPlayerModal,
+  playerId,
+  isEditing,
+  editPlayersDetails,
+  addPlayer,
+  
+  lineUp
+}) {
+  const playerEditModalRef = useRef();
+  const id = useId();
+  useClickAwayListener(playerEditModalRef, closeAddPlayerModal);
+  const playerDetails = getPlayerDetails(playerId, lineUp);
   const [formValues, setFormValues] = useState({
     playerName: "",
     playerNumber: "",
@@ -29,11 +35,13 @@ const id = useId()
   const [numberTaken, setNumberTaken] = useState(false);
 
   useEffect(() => {
-    checkNumberAvailability();
+    
+      checkNumberAvailability();
+    
   }, [formValues]);
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEditing && playerDetails != undefined) {
       setFormValues({
         ...formValues,
         playerName: playerDetails.name,
@@ -41,8 +49,6 @@ const id = useId()
       });
     }
   }, [isEditing]);
-
- 
 
   const handleOnChange = ({ target: { name, value } }) => {
     setFormValues({
@@ -56,9 +62,9 @@ const id = useId()
   };
 
   function checkNumberAvailability() {
-    const playerDetails = getPlayerDetails(playerId, teamLineUp);
+    const playerDetails = getPlayerDetails(playerId, lineUp);
     if (isEditing) {
-      const isNumberExist = teamLineUp.some(
+      const isNumberExist = lineUp?.some(
         (player) =>
           player.num == formValues.playerNumber && formValues.playerNumber != playerDetails.num
       );
@@ -67,9 +73,8 @@ const id = useId()
       } else {
         setNumberTaken(false);
       }
-    }
-    else {
-      const isNumberExist = teamLineUp.some((player)=>player.num == formValues.playerNumber)
+    } else {
+      const isNumberExist = lineUp?.some((player) => player.num == formValues.playerNumber);
       if (isNumberExist && formValues.playerNumber !== "") {
         setNumberTaken(true);
       } else {
@@ -78,27 +83,34 @@ const id = useId()
     }
   }
 
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-if(isEditing){
-const editDetails = {
-  ...formValues, position: selectPlayerPosition.value, playerId
-}
-editPlayersDetails(editDetails)
-closeAddPlayerModal()
-}
-
-else {
-  const playerData = {
-    name: formValues.playerName, num: formValues.playerNumber, id, pos: selectPlayerPosition.value
-  }
-  addPlayer(playerData)
-  closeAddPlayerModal()
-}
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isEditing) {
+      const editDetails = {
+        ...formValues,
+        position: selectPlayerPosition.value,
+        playerId,
+      };
+      editPlayersDetails(editDetails);
+      closeAddPlayerModal();
+    } else {
+      const playerData = {
+        name: formValues.playerName,
+        num: formValues.playerNumber,
+        id,
+        pos: selectPlayerPosition.value,
+      };
+      addPlayer(playerData);
+      closeAddPlayerModal();
+    }
+  };
   return (
     <PopOver>
-      <form onSubmit={handleSubmit} ref={playerEditModalRef} className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4">
+      <form
+        onSubmit={handleSubmit}
+        ref={playerEditModalRef}
+        className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4"
+      >
         <p className="mt-2 self-center bg-primary text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl">
           Player Details
         </p>
@@ -155,14 +167,15 @@ else {
           </button>
           <button
             type="submit"
-            disabled= {numberTaken || formValues.playerName == ""}
+            disabled={numberTaken || formValues.playerName == ""}
             className="border border-primary bg-primary disabled:bg-grey disabled:cursor-not-allowed text-white rounded-lg px-4 py-1 hover:border-hover"
-            
           >
             Submit
           </button>
         </div>
-        <div className="absolute text-[1.3rem] top-2 right-2" onClick={closeAddPlayerModal}><TfiClose arial-visibility="hidden"/></div>
+        <div className="absolute text-[1.3rem] top-2 right-2" onClick={closeAddPlayerModal}>
+          <TfiClose arial-visibility="hidden" />
+        </div>
       </form>
     </PopOver>
   );

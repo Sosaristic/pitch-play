@@ -14,4 +14,8 @@ export {default as SquadList} from "./MyTeam/SquadList"
 export {default as TeamSettings} from "./MyTeam/TeamSettings"
 export {default as MyTeamNav} from "./MyTeam/MyTeamNav"
 export {default as TeamFormation} from "./MyTeam/TeamFormation"
+export {default as CreateTeam} from "./MyTeam/CreateTeam"
+export {default as CreateTeamForm1} from "./MyTeam/CreateTeamForm1"
+export {default as CreateTeamForm2} from "./MyTeam/CreateTeamForm2"
+export {default as TeamSquad} from "./MyTeam/TeamSquad"
 
