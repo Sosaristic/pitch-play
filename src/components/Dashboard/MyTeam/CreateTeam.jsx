@@ -1,32 +1,44 @@
-import React, { useState } from 'react'
-import {CreateTeamForm1, CreateTeamForm2} from "../../Dashboard"
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { CreateTeamForm1, CreateTeamForm2 } from "../../Dashboard";
+import { useNewTeamData } from "../../../context/CreateTeamData";
 
 export default function CreateTeam() {
-    const [steps, setSteps] = useState(1)
-    const [teamData, setTeamData] = useState({
-        firstForm: null,
-        secondForm: null
-    })
+  const navigate = useNavigate()
+    const {teamLineUp,} = useNewTeamData()
+    const firstFormValues = useRef()
+  const [steps, setSteps] = useState(1);
+  
 
-    const handleFormSubmit = (context, values)=>{
-        if(context === "firstForm"){
-            setTeamData({
-                ...teamData, firstForm: values
-            })
-            setSteps(2)
-        }
+ 
 
-    }
+  const handlePrev = ()=>{
+    setSteps(prev=>prev-1)
+  }
+  const handleFirstForm = (formVales)=>{
+firstFormValues.current = formVales
+setSteps(prev=>prev + 1)
+  }
+  const handleFinish = ()=>{
+console.log(teamLineUp);
+console.log(firstFormValues);
+navigate("/dashboard/my-team", {replace: true})
+  }
   return (
-    <div className='px-4 pb-[7rem]'>
+    <div className="px-4 pb-[7rem] pt-[2rem]">
+      <div>
+        {steps === 1 && (
+          <div>
+            <CreateTeamForm1 handleFormOneSubmit={handleFirstForm} />
+          </div>
+        )}
+        {steps === 2 && (
+          <div>
+            <CreateTeamForm2 handlePrev={handlePrev} handleFinish ={handleFinish} />
+          </div>
+        )}
        
-        <div>
-            {steps === 1 && <div><CreateTeamForm1 handleFormOneSubmit={handleFormSubmit}/></div>}
-            {steps === 2 && <div><CreateTeamForm2 /></div>}
-        </div>
+      </div>
     </div>
-  )
+  );
 }
-
-
-

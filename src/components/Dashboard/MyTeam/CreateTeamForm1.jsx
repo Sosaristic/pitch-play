@@ -29,7 +29,7 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleFormOneSubmit("firstForm", teamData);
+    handleFormOneSubmit(teamData);
   };
 
   return (
@@ -91,7 +91,7 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
 
           <button
             type="submit"
-            className="text-[1.2rem] flex items-center gap-2 text-white mt-8 bg-primary rounded-lg px-6 py-1 transition-colors duration-300 lg:hover:bg-hover "
+            className="text-[1.2rem] flex items-center gap-2 text-white mt-8 bg-primary rounded-sm px-6 py-1 transition-colors duration-300 lg:hover:bg-hover "
           >
             Next
             <span><BsArrowRight /></span>

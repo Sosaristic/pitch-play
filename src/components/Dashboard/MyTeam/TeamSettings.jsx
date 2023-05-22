@@ -3,7 +3,6 @@ import { IoMdShirt } from "react-icons/io";
 import { regEx } from "../../Form/regex";
 
 import { TextField } from "../../Form";
-import { Button } from "../../UI";
 
 export default function TeamSettings() {
 const [teamData, setTeamData] = useState({
@@ -33,7 +32,7 @@ console.log(teamData);
 }
   return (
     <div className="relative">
-      <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">
+      <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold">
         Team Settings
       </h2>
 
@@ -65,7 +64,7 @@ console.log(teamData);
           </div>
         </div>
 
-        <button type="submit" className="text-[1.2rem] mt-8 bg-primary rounded-lg px-6 py-1 transition-colors duration-300 lg:hover:bg-hover ">Save</button>
+        <button type="submit" className="text-[1.2rem] text-white mt-8 bg-primary rounded-lg px-6 py-1 transition-colors duration-300 lg:hover:bg-hover ">Save</button>
       </form>
     </div>
   );

@@ -69,9 +69,9 @@ export default function SquadList({teamContext, setMinTeamLength}) {
   };
   // console.log(teamLineUp);
   return (
-    <div>
+    <div className="min-h-full">
     
-      <div className="mt-6 flex flex-col min-h-screen">
+      <div className="mt-6 flex flex-col min-h-full">
         {teamLineUp?.map((item) => (
           <SquadListCard
             key={item.id}
