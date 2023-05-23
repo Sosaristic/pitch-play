@@ -11,7 +11,7 @@ const PlayerNumber = ({ num }) => {
   };
   
   export default function SquadListCard({ playerData, openDialog,  openEditPlayerDialog }) {
-    const { id, num, name, pos } = playerData;
+    const { id, num, name, pos, isRemoved } = playerData;
   
     const setPlayerPositionLength = (position, type) => {
       if (type === "full") {
@@ -28,7 +28,7 @@ const PlayerNumber = ({ num }) => {
     };
   
     return (
-      <div className="flex text-[.8rem] sm:text-[1.2rem] py-2 font-poppins items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default">
+      <div className={`flex relative  ${isRemoved? "translate-x-[-100%]" : "translate-x-[0%]"} transition-transform duration-1000 text-[.8rem] sm:text-[1.2rem] py-2 font-poppins items-center border-b border-gray-900 lg:hover:bg-gray-500 cursor-default`}>
         <div className="flex-1 flex justify-center">
           <PlayerNumber num={num} />
         </div>

@@ -14,19 +14,33 @@ export default function SquadList({teamContext, setMinTeamLength}) {
     setShowNotification,
     editPlayersDetails,
     addPlayer,
+    handleRemoveAnimation
   } = teamContext();
   const [displayConfirmation, setDisplayConfirmation] = useState(false);
   const [showEditPlayersModal, setShowEditPlayersModal] = useState(false);
   const [showAddPlayersModal, setShowAddPlayersModal] = useState(false);
+  const [isPlayerRemoved, setIsPlayerRemoved] = useState(false)
   const playerId = useRef(null);
 
-  console.log(teamLineUp);
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setShowNotification(false);
     }, 5000);
     return () => clearTimeout(timeOut);
   }, [showNotification]);
+
+  useEffect(()=>{
+if(isPlayerRemoved){
+  const timeOut = setTimeout(()=>{
+    removePlayer(playerId?.current);
+setIsPlayerRemoved(false)
+  }, 1000)
+  return ()=>clearTimeout(timeOut)
+}
+
+
+
+  }, [isPlayerRemoved])
 
   const closeConfirmationDialog = () => {
     setDisplayConfirmation(false);
@@ -43,7 +57,8 @@ export default function SquadList({teamContext, setMinTeamLength}) {
   };
 
   const handleDialogConfrim = () => {
-    removePlayer(playerId?.current);
+    handleRemoveAnimation(playerId?.current)
+    setIsPlayerRemoved(true)
     closeConfirmationDialog();
   };
 

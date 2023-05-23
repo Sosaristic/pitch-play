@@ -56,12 +56,20 @@ export function MyTeamDataProvider({ children }) {
     });
   }
 function removePlayer(playerID){
+
+
 dispatch({
   type: "REMOVE_PLAYER",
   playerID,
 })
 
 
+}
+function handleRemoveAnimation(playerID){
+  dispatch({
+    type: "INDICATE_PLAYER_TO_REMOVE",
+    playerID
+  })
 }
 
 function editPlayersDetails(editDetails){
@@ -93,7 +101,8 @@ dispatch({
     showNotification,
     setShowNotification,
     editPlayersDetails,
-    addPlayer
+    addPlayer,
+    handleRemoveAnimation,
   };
   return <TeamDataContext.Provider value={value}>{children}</TeamDataContext.Provider>;
 }

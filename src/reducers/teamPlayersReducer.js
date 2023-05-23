@@ -1,3 +1,5 @@
+import { modifyPlayerDetails } from "../functions/helperFunctions"
+
 export function teamPlayersReducer(teamPlayers, action){
     switch(action?.type){
         case "REMOVE_PLAYER": {
@@ -67,6 +69,11 @@ export function teamPlayersReducer(teamPlayers, action){
         case "ADD_PLAYER": {
           const newPlayers = [...teamPlayers, action.playerData]
           return newPlayers
+        }
+        case "INDICATE_PLAYER_TO_REMOVE": {
+          const id = action.playerID
+          const modifiedData = modifyPlayerDetails(id, teamPlayers, "isRemoved", true)
+          return modifiedData
         }
         
 
