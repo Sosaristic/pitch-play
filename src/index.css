@@ -25,9 +25,8 @@
 
 
 body{
-  background-color: black;
+  background-color: #121212;
   color: white;
-  scrollbar-color: red;
 }
 
 .match-active::before{
@@ -260,5 +259,18 @@ transform: rotate(135deg);
   100%{
     transform: rotate(135deg);
   }
+}
+
+/* avatar logout  */
+.logout::after{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -8px;
+  right: 2px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #1b1b1b;
 }
 }

@@ -4,8 +4,8 @@ import TeamFormCard from './TeamFormCard'
 
 export default function Overview() {
   return (
-    <section className='bg-black'>
-        <DHero />
+    <section className=''>
+        
         <section className='flex'>
         <TeamFormCard />
         </section>
