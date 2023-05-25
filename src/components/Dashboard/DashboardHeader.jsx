@@ -6,7 +6,6 @@ import { MdArrowDropDown } from "react-icons/md";
 export default function DashboardHeader() {
   return (
     <header className="p-2 flex items-center">
-      <h1 className="text-[1rem] font-jost text-grey font-[500]">Welcome back Champ!</h1>
       <div
         role="dropdown"
         className="group ml-auto flex gap-2 relative text-dark-grey-rgba font-jost bg-dark-grey items-center px-4 py-1 rounded-md"
@@ -19,7 +18,7 @@ export default function DashboardHeader() {
           </span>
         </div>
 
-        <div className="absolute z-[1]  scale-0 group-hover:scale-[1] transition-transform right-0  left-0 ">
+        <div className="absolute z-[1000]  scale-0 group-hover:scale-[1] transition-transform right-0  left-0 ">
           <div className="absolute right-0 text-[.8rem] w-[12rem] rounded-sm top-[2rem] py-2 bg-dark-grey flex flex-col items-center gap-2 logout z-[1]    bg-red">
             <div className="w-fit">
               <Avatar />

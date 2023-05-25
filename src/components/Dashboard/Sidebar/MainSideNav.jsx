@@ -5,13 +5,13 @@ import SideBarLinks from "./SideBarLinks";
 
 export default function MainSideNav() {
   return (
-    <aside>
-      <div className="relative ">
-        <Link to="/" className="font-righteous text-primary text-[2rem] lg:text-[2.5rem] py-4">
+    <aside className="flex flex-col items-center relative px-2">
+      <div className="relative w-full">
+        <Link to="/" className="font-righteous text-primary text-[2rem] lg:text-[2rem]">
           PitchPlay
         </Link>
       </div>
-      <div className="mt-12"><SideBarLinks /></div>
+      <div className="mt-12 w-full"><SideBarLinks /></div>
     </aside>
   );
 }

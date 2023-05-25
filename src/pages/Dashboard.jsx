@@ -13,7 +13,7 @@ export default function Dashboard() {
 
         <div className="bg-grey hidden lg:block w-[15%] min-h-[100vh]"><MainSideNav /></div>
 
-        <div className="w-[70%] relative min-h-[100vh] bg-dark flex-1 pt-14 lg:pt-0">
+        <div className="w-[70%] relative min-h-[100vh] bg-dark flex-1">
           <DashboardHeader />
 
           <Outlet/>
