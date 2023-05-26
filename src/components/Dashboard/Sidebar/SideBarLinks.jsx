@@ -17,9 +17,9 @@ export default function SideBarLinks() {
       <ul className="flex flex-col gap-6">
       {sideBarLinks.map((nav,i)=>(
              <li key={i}  className='w-full'>
-             <NavLink to={`${nav.link}`} className={ ({isActive})=>isActive?"text-white bg-primary flex items-center gap-4 text-[1.2rem ] w-[80%] mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
-                    : "text-gray-400 bg-grey flex items-center gap-4 text-[1.2rem ] w-[80%] mx-auto p-2 rounded-tl-2xl rounded-br-2xl"}>
-               <span className='text-[.8rem] lg:text-[1rem] font-semibold'>{nav.icon}</span>
+             <NavLink to={`${nav.link}`} className={ ({isActive})=>isActive?"text-white w-full  bg-gradient-to-r from-primary to-light-grey font-[900] flex items-center gap-4 text-[1.2rem ] p-2 rounded-md"
+                    : "text-gray-400 bg-grey flex items-center gap-4 text-[1.2rem ]  mx-auto p-2  rounded-md"}>
+               <span className="text-[.8rem] lg:text-[1.2rem] font-semibold">{nav.icon}</span>
               {nav.title}
              </NavLink>
            </li>
