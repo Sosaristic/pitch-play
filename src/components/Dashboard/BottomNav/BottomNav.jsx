@@ -14,13 +14,14 @@ export default function BottomNav() {
             to={item.link}
             className={({ isActive }) =>
               isActive
-                ? "text-white bg-primary flex items-center gap-4 text-[1.2rem ] w-[80%] mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
-                : "text-gray-400 bg-grey flex items-center gap-4 text-[1.2rem ] w-[80%] mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
+                ? "text-white bg-primary flex flex-col items-center gap-1 text-[1.2rem ]  mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
+                : "text-gray-400 bg-grey flex flex-col items-center gap-1 text-[1.2rem ]  mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
             }
           >
-            {item.icon}
+            <span className="text-[1.5rem]">{item.icon}</span>
+            <span className=" font-[500] text-[.8rem]">{item.title}</span>
+
           </NavLink>
-          <p className=" font-[500] text-[.8rem]">{item.title}</p>
         </div>
       ))}
     </div>
