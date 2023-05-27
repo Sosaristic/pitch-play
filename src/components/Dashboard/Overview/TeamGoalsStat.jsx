@@ -10,14 +10,14 @@ export default function TeamGoalsStat() {
       <div className="h-[6rem] w-[6rem] rounded-full flex flex-col items-center justify-center font-poppins text-[2rem] border-2 border-primary">
         10 <span className="text-[1rem] -mt-2">Games</span>
       </div>
-      <div className="flex w-[80%]  flex-col md:flex-row gap-4">
+      <div className="flex w-[80%]  flex-col md:flex-row gap-4 px-6">
        
          <div className="flex font-poppins items-center">
               <div className="relative h-[3rem] w-[3rem] flex  items-center justify-center rounded-full p-1 bg-hover">
                 <img src={ShootBall} alt="" className="max-w-[80%] max-h-[80%]" />
               </div>
               <div className="flex flex-1 flex-col items-center">
-                <p className="text-[1.6rem] font-[700]">24</p>
+                <p className="text-[1.6rem] font-[700]">36</p>
                 <p className="text-center md:text-[.8rem]">Goals Scored</p>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function TeamGoalsStat() {
                 <img src={Glove} alt="" className="max-w-[80%] max-h-[80%]" />
               </div>
               <div className="flex flex-1 flex-col items-center">
-                <p className="text-[1.6rem] font-[700]">24</p>
+                <p className="text-[1.6rem] font-[700]">8</p>
                 <p className="text-center md:text-[.8rem]">Clean Sheets</p>
               </div>
             </div>
