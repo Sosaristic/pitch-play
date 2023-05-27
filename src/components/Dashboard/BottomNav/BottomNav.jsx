@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function BottomNav() {
   return (
-    <div className="flex justify-around bg-black items-center py-2">
+    <div className="flex justify-around bg-black items-center py-1">
       {sideBarLinks?.map((item) => (
         <div
           key={item.id}
@@ -18,7 +18,7 @@ export default function BottomNav() {
                 : "text-gray-400 bg-grey flex flex-col items-center gap-1 text-[1.2rem ]  mx-auto p-2 rounded-tl-2xl rounded-br-2xl"
             }
           >
-            <span className="text-[1.5rem]">{item.icon}</span>
+            <span className="text-[1rem]">{item.icon}</span>
             <span className=" font-[500] text-[.8rem]">{item.title}</span>
 
           </NavLink>

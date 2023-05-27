@@ -46,7 +46,7 @@ setProgress(prev => prev + 1)
           style={{
             background: `conic-gradient(#c74aae, ${progress * 3.6}deg, #1b1b1b 0deg)`,
           }}
-          className="circle-progress w-[8rem] h-[8rem] relative rounded-full flex items-center justify-center"
+          className="circle-progress w-[7rem] h-[7rem] relative rounded-full flex items-center justify-center"
         >
           <div className="z-[1] text-[1.8rem] font-bold text-center">
             <span>{progress}%</span>
@@ -54,6 +54,7 @@ setProgress(prev => prev + 1)
             <span className="text-[1.2rem]">Form</span>
           </div>
         </div>
+        <p className="bg-light-grey font-poppins last-five-match w-[60%] text-center">Last 5 matches</p>
         <div className="flex gap-4">
           {matchesResult?.map((item) => {
             return (

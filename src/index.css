@@ -226,8 +226,8 @@
   }
   .circle-progress::before {
     content: "";
-    height: 7rem;
-    width: 7rem;
+    height: 6rem;
+    width: 6rem;
     position: absolute;
     border-radius: 50%;
     background-color: #242424;
@@ -249,5 +249,8 @@
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 8px solid #1b1b1b;
+  }
+  .last-five-match{
+box-shadow: 2px 2px 3px 2px #1b1b1b;
   }
 }
