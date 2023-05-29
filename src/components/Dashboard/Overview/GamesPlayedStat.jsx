@@ -24,9 +24,7 @@ matchesResult?.forEach((item)=>{
 })
 const winDegree =Math.round( (wins / matchesResult.length) * 360  )
 const lossDegree =Math.round( (losses / matchesResult.length) * 360  )
-const drawDegree =Math.round( (draws / matchesResult.length) * 360  )
 
-console.log(`wins ${winDegree} draws ${drawDegree} losses ${lossDegree}`);
 return {winAngle: winDegree, lossAngle: winDegree + lossDegree, wins, draws, losses}
 }
 pieChart()
@@ -34,7 +32,7 @@ pieChart()
 
   return (
     <div className="basis-[45%] flex-1 relative bg-light-grey flex flex-col items-center justify-between py-3 px-2 gap-4 rounded-md shadow-dashboard-card">
-        <p className="font-bold font-poppins">Games Stats</p>
+        <p className="font-bold font-poppins w-full text-center">Games Stats</p>
       <div
         style={{
           background: `conic-gradient(#c74aae 0deg, #c74aae ${pieChart().winAngle}deg,  #66355c 0deg, #66355c ${pieChart().lossAngle}deg, #1b1b1b 0deg, #1b1b1b 360deg)`,

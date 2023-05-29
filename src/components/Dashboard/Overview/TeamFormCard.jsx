@@ -41,7 +41,7 @@ setProgress(prev => prev + 1)
   return (
     <>
       <div className="basis-[45%] flex-1 bg-light-grey flex flex-col items-center py-3 px-2 gap-4 rounded-md shadow-dashboard-card">
-        <p className="font-bold font-poppins">Team form</p>
+        <p className="font-bold font-poppins w-full text-center">Team form</p>
         <div
           style={{
             background: `conic-gradient(#c74aae, ${progress * 3.6}deg, #1b1b1b 0deg)`,

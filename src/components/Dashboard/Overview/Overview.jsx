@@ -1,8 +1,8 @@
 import React from 'react'
-import {DHero} from ".."
 import TeamFormCard from './TeamFormCard'
 import GamesPlayedStat from './GamesPlayedStat'
 import TeamGoalsStat from './TeamGoalsStat'
+import ResultsCard from './ResultsCard'
 
 export default function Overview() {
   return (
@@ -17,6 +17,7 @@ export default function Overview() {
         </section>
         <section className='flex flex-col mt-4 md:flex-row'>
           <TeamGoalsStat />
+          <ResultsCard />
         </section>
     </main>
   )
