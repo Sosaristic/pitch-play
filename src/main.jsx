@@ -46,7 +46,9 @@ const router = createBrowserRouter([
       {
         element: <MatchRoute />,
         children: [
-          { path: "/dashboard/matches", element: <Matches /> },
+          { path: "/dashboard/matches", element: <Matches />, 
+        
+        },
           { path: "/dashboard/matches/live/:id", element: <ScoreUpdater /> },
         ],
       },
