@@ -20,3 +20,69 @@ export const homePlayers = [
   { id: 19, pos: "fw", name: "gernacho", num: 49, isCaptain: false, swapColor: false },
   { id: 20, pos: "gk", name: "butland", num: 31, isCaptain: false, swapColor: false },
 ];
+
+export const matchResult = [
+  {
+    matchId: 1,
+    homeName: "manchester united",
+    homeScore: 4,
+    awayName: "chelsea",
+    awayScore: 3,
+    stadium: "Franco A",
+    date: "25 Mar 2023",
+    matchType: "friendly"
+  },
+  {
+    matchId: 2,
+    homeName: "Liverpool",
+    homeScore: 1,
+    awayName: "manchester city",
+    awayScore: 2,
+    stadium: "Unn Stadium",
+    date: "10 Apr 2023",
+    matchType: "Department League"
+  },
+  {
+    matchId: 3,
+    homeName: "Liverpool",
+    homeScore: 1,
+    awayName: "manchester city",
+    awayScore: 2,
+    stadium: "Unn Stadium",
+    date: "10 Apr 2023",
+    matchType: "Department League"
+  },
+  {
+    matchId: 4,
+    homeName: "Liverpool",
+    homeScore: 1,
+    awayName: "manchester city",
+    awayScore: 2,
+    stadium: "Unn Stadium",
+    date: "10 Apr 2023",
+    matchType: "Department League"
+  },
+];
+
+export const matchFixtures = [
+  {
+    matchId: 1,
+    homeName: "manchester united",
+    homeScore: null,
+    awayName: "liverpool",
+    awayScore: null,
+    stadium: "Franco A",
+    date: "25 Mar 2023",
+    matchType: "friendly"
+  },
+  {
+    matchId: 2,
+    homeName: "manchester united",
+    homeScore: null,
+    awayName: "manchester city",
+    awayScore: null,
+    stadium: "Franco A",
+    date: "25 Mar 2023",
+    matchType: "friendly"
+  },
+];

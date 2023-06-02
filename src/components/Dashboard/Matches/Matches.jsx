@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import TeamsCard from "../../UI/TeamsCard";
 import { PopOver } from "../../UI";
+import { matchResult } from "../../UI/UIData";
 import CreateMatchModal from "./CreateMatchModal";
 import useClickAwayListener from "../../../hooks/useClickAway";
 import SpeedButton from "./SpeedButton";
@@ -34,13 +35,15 @@ export default function Matches() {
 
   return (
     <div>
+      <p>matches</p>
       <div
-        className="flex relative flex-wrap justify-evenly  gap-4 px-8 pb-20"
+        className="flex relative flex-wrap justify-around  gap-4 pb-20"
       >
-        {Array.from({ length: 2 }, (v, id) =>  (
+        {matchResult.map((matchData)=>{
+          return  <div key={matchData.matchId} className=""><TeamsCard  matchData={matchData} handleMatchCard={handleMatchCard}/></div>
+        })
           
-          <TeamsCard key={id} handleMatchCard={handleMatchCard} id={id}/>
-        ))}
+        }
       </div>
       <SpeedButton handleModalDisplay={handleModalDisplay} />
       {openPopOver && (

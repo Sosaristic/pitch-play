@@ -1,33 +1,26 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 export const matchesResult = [
   { id: 1, result: "w" },
-  { id: 2, result: "l" },
+  { id: 2, result: "w" },
   { id: 3, result: "w" },
   { id: 4, result: "d" },
   { id: 5, result: "d" },
 ];
 
 export default function TeamFormCard() {
-  const [progress, setProgress] = useState(0)
-useEffect(()=>{
-const percentage = calcuateTeamForm()
-console.log(percentage);
-  
-  
-  const interval = setInterval(()=>{
-setProgress(prev => prev + 1)
-  }, 10)
-  if(progress === percentage){
-    clearInterval(interval)
-  }
-  return ()=> clearInterval(interval)
-}, [progress])
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const percentage = calcuateTeamForm();
+    const interval = setInterval(() => {
+      setProgress((prev) => prev + 1);
+    }, 10);
+    if (progress === percentage) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [progress]);
 
-
-
-
-  
   function calcuateTeamForm() {
     let win = 0,
       lose = 0,
@@ -36,7 +29,7 @@ setProgress(prev => prev + 1)
       item.result == "w" ? (win += 3) : item.result == "d" ? (draw += 1) : (lose += 0);
     });
     const result = Math.round(((win + draw + lose) / (matchesResult.length * 3)) * 100);
-    return result
+    return result;
   }
   return (
     <>
@@ -54,7 +47,9 @@ setProgress(prev => prev + 1)
             <span className="text-[1.2rem]">Form</span>
           </div>
         </div>
-        <p className="bg-light-grey font-poppins last-five-match w-[60%] text-center">Last 5 matches</p>
+        <p className="bg-light-grey font-poppins last-five-match w-[60%] text-center">
+          Last 5 matches
+        </p>
         <div className="flex gap-4">
           {matchesResult?.map((item) => {
             return (

@@ -46,12 +46,12 @@
 
   .teams-card {
     box-shadow: 0px 0px 8px 0px rgb(234, 135, 238) inset;
-    background: linear-gradient(
+    /* background: linear-gradient(
       45deg,
       rgba(182, 131, 224, 0.585) 0%,
       rgba(0, 0, 0, 0.29) 74%,
       rgba(175, 160, 178, 0.4) 98%
-    );
+    ); */
     border-top: 2px solid rgb(234, 135, 238);
   }
 

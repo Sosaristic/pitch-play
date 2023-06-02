@@ -61,7 +61,7 @@ export default function LineUp() {
   };
 
   function showSwapIndicator() {
-    indicatePlayerToSwap(firstPlayerId?.current);
+    indicatePlayerToSwap(firstPlayerId.current);
   }
 
   function handleSwapPlayers() {
