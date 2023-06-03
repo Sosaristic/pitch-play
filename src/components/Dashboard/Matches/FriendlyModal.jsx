@@ -120,7 +120,7 @@ else{
         <div className="flex justify-end gap-4 my-4">
           <button
             type="button"
-            className="text-[1.2rem] rounded-2xl border border-primary px-4 py-1 font-[600] text-primary lg:hover:bg-hover lg:hover:text-white"
+            className="text-[1.2rem] rounded-sm border border-primary px-4 py-1 font-[600] text-primary lg:hover:bg-hover lg:hover:text-white"
           onClick={closeModal}
           >
             Cancel
@@ -128,7 +128,7 @@ else{
           <button
             type="submit"
             disabled={formValues.refree == "" || formValues.matchVenue == "" }
-            className="text-[1.2rem] bg-primary text-white rounded-2xl border-2 font-[600] border-primary px-4 py-1 lg:hover:bg-hover disabled:bg-gray-500 disabled:border-none"
+            className="text-[1.2rem] bg-primary text-white rounded-sm border-2 font-[600] border-primary px-4 py-1 lg:hover:bg-hover disabled:bg-gray-500 disabled:border-none"
           >
             Submit
           </button>
