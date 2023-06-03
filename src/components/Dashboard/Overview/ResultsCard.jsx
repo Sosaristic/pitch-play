@@ -10,7 +10,7 @@ export default function ResultsCard() {
   return (
     
     <div className="basis-[30%] flex-1 relative bg-light-grey flex flex-col gap-2 py-3 px-2 rounded-md shadow-dashboard-card">
-      <p className="flex font-righteous">Results <Link className="ml-auto hover:underline">View More</Link></p>
+      <p className="flex font-righteous">Results <Link to="/dashboard/matches/results" className="ml-auto hover:underline">View More</Link></p>
 {matchResult?.map((matchData)=>{
   return  <TeamsCard key={matchData.matchId} matchData={matchData}/>
 })}
