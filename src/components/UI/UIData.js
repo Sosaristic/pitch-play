@@ -42,26 +42,7 @@ export const matchResult = [
     date: "10 Apr 2023",
     matchType: "Department League"
   },
-  {
-    matchId: 3,
-    homeName: "Liverpool",
-    homeScore: 1,
-    awayName: "manchester city",
-    awayScore: 2,
-    stadium: "Unn Stadium",
-    date: "10 Apr 2023",
-    matchType: "Department League"
-  },
-  {
-    matchId: 4,
-    homeName: "Liverpool",
-    homeScore: 1,
-    awayName: "manchester city",
-    awayScore: 2,
-    stadium: "Unn Stadium",
-    date: "10 Apr 2023",
-    matchType: "Department League"
-  },
+  
 ];
 
 export const matchFixtures = [

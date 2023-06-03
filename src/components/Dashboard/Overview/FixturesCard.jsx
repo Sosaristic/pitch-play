@@ -10,7 +10,7 @@ export default function FixturesCard() {
     <p className="flex font-righteous">Fixtures <Link className="ml-auto hover:underline">View More</Link></p>
 
 {matchFixtures.map((matchData)=>{
-          return  <div key={matchData.matchId} className="w-full md:w-[40%]"><TeamsCard  matchData={matchData}/></div>
+          return  <div key={matchData.matchId} className="w-full"><TeamsCard  matchData={matchData} fixture={true}/></div>
         })}
     
   </div>
