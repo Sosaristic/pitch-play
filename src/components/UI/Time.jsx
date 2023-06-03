@@ -9,7 +9,6 @@ export default function Time({ showSeconds, matchTime, stopTime }) {
     minutes: 0,
     seconds: 0,
   });
-  console.log(matchTime);
   const prevDate = matchTime
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function Time({ showSeconds, matchTime, stopTime }) {
     return () => clearInterval(timeInterval);
   }, [matchTime, stopTime]);
 
-  console.log(`${time.hours} : ${time.minutes} : ${time.seconds}`);
   return (
     <div className="flex text-[1.5rem]">
       <span >{time.minutes + time.hours * 60}</span>

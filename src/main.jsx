@@ -19,6 +19,8 @@ import {
   TeamFormation,
   CreateTeam,
   TeamSquad,
+  Results,
+  Fixtures
 } from "./components/Dashboard/";
 
 const router = createBrowserRouter([
@@ -46,9 +48,10 @@ const router = createBrowserRouter([
       {
         element: <MatchRoute />,
         children: [
-          { path: "/dashboard/matches", element: <Matches />, 
-        
-        },
+          { path: "/dashboard/matches", element: <Matches /> },
+          {path: "/dashboard/matches/fixtures", element: <Fixtures />},
+          {path: "/dashboard/matches/results", element: <Results />},
+
           { path: "/dashboard/matches/live/:id", element: <ScoreUpdater /> },
         ],
       },

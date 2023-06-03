@@ -3,7 +3,6 @@ import { BottomNav, DashboardHeader, MainSideNav } from '../components/Dashboard
 import { Outlet } from 'react-router-dom'
 import { MyTeamDataProvider } from '../context/MyTeamData'
 import { NewTeamDataProvider } from '../context/CreateTeamData'
-import MobileHeader from '../components/Layout/MobileHeader'
 
 export default function Dashboard() {
   return (

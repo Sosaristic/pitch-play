@@ -10,8 +10,8 @@ export default function FixturesCard() {
     <p className="flex font-righteous">Fixtures <Link className="ml-auto hover:underline">View More</Link></p>
 
 {matchFixtures.map((matchData)=>{
-  return  <TeamsCard fixture={true} key={matchData.matchId} matchData={matchData}/>
-})}
+          return  <div key={matchData.matchId} className="w-full md:w-[40%]"><TeamsCard  matchData={matchData}/></div>
+        })}
     
   </div>
   )

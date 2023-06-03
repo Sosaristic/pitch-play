@@ -3,11 +3,11 @@ import { IoMdShirt } from "react-icons/io";
 import { MdStadium, MdCalendarMonth } from "react-icons/md";
 
 export default function TeamsCard({ handleMatchCard, id, fixture, matchData }) {
-  const { homeName, awayName, homeScore, awayScore, stadium, date, matchType } = matchData || {};
+  const { homeName, matchId, awayName, homeScore, awayScore, stadium, date, matchType } = matchData || {};
   return (
     <div
-      className="flex  min-w-[80vw] md:min-w-[40vw] mx-auto h-[10rem] text-gray-300 flex-col teams-card rounded-md px-4 font-poppins py-2 pb-4"
-      onClick={() => handleMatchCard(id)}
+      className="flex w-full mx-auto max-h-[10rem] min-h-[10rem] text-gray-300 flex-col teams-card rounded-md px-4 font-poppins py-2 pb-4"
+      onClick={() => handleMatchCard(matchId)}
     >
       <p className="text-center text-[.8rem] capitalize">{matchType}</p>
       <div className="flex flex-1 items-center">

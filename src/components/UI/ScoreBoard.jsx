@@ -17,7 +17,7 @@ export default function ScoreBoard({scoreBoardData, showSeconds, matchTime, stop
                     <p className="text-center font-[600]">{homeName}</p>
                 </div>
                 <div className="basis-[20%] flex-1 flex flex-col items-center ">
-                    <div className="text-[1.4rem] md:text-[2rem]  font-bold font-inter">{homeScore} - {awayScore}</div>
+                    <div className="text-[1.2rem] md:text-[2rem]  font-bold font-inter">{homeScore} - {awayScore}</div>
                     <div className="text-primary"><Time showSeconds={showSeconds} matchTime={matchTime} stopTime={stopTime}/></div>
                 </div>
                 <div className="basis-[35%] flex-1 flex flex-col items-center gap-2">

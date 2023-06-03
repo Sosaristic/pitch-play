@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        vs: "290px",
+        vs: "280px",
       },
       colors: {
         primary: "#c74aae",
