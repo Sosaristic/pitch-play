@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
 import {TextField} from "../Form";
 import {Button} from "../UI";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginToken } from '../../hooks/useLoginToken';
 
 export default function Login() {
+const navigate = useNavigate()
+const {setToken} = useLoginToken()
+
     const [loginValues, setLoginValues] = useState({
         email: "",
         password: "",
@@ -15,6 +19,12 @@ export default function Login() {
           [name]: value,
         });
       };
+
+      const handleSubmit = (e)=>{
+        e.preventDefault()
+        setToken(true)
+        navigate("/dashboard/overview")
+      }
   return (
     <div className='absolute w-[80%] bg-white login'>
            <p className="text-center text-[1.8rem] font-bold font-jost"> Hello, Welcome back</p>
@@ -23,7 +33,7 @@ export default function Login() {
           Please Log in to ur Account{" "}
         </p>
 
-        <form className="flex flex-col gap-4 md:w-[80%] mx-auto mt-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:w-[80%] mx-auto mt-8">
           <div>
             <TextField
               type="email"

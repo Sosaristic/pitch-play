@@ -1,9 +1,18 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Avatar } from "../UI";
 import { MdArrowDropDown } from "react-icons/md";
+import { useLoginToken } from "../../hooks/useLoginToken";
 
 export default function DashboardHeader() {
+  const {removeToken} = useLoginToken()
+  const navigate = useNavigate()
+
+  const handleLogout = ()=>{
+removeToken()
+navigate("/sign-in")
+
+  }
   return (
     <header className="p-2 flex items-center">
       <div
@@ -24,7 +33,7 @@ export default function DashboardHeader() {
               <Avatar />
             </div>
             <p>Anderson</p>
-            <button className="bg-primary w-[60%] rounded-lg hover:bg-hover transition-colors duration-300">Sign Out</button>
+            <button type="button" onClick={handleLogout} className="bg-primary w-[60%] rounded-lg hover:bg-hover transition-colors duration-300">Sign Out</button>
           </div>
         </div>
       </div>

@@ -1,10 +1,13 @@
 import React from 'react'
 import { BottomNav, DashboardHeader, MainSideNav } from '../components/Dashboard'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 import { MyTeamDataProvider } from '../context/MyTeamData'
 import { NewTeamDataProvider } from '../context/CreateTeamData'
-
+import { useLoginToken } from '../hooks/useLoginToken'
 export default function Dashboard() {
+  const {getToken} = useLoginToken()
+if(!getToken()) return <Navigate to="/sign-in"/>
+
   return (
     <MyTeamDataProvider>
       <NewTeamDataProvider>
