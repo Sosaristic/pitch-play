@@ -21,6 +21,9 @@ export function useTeamPlayers(){
         { id: useId(), pos: "mf", name: "vincenzo", num: 24, isCaptain: false, swapColor: false, isRemoved: false},
         { id: useId(), pos: "fw", name: "beluchi", num: 19, isCaptain: false, swapColor: false, isRemoved: false},
         { id: useId(), pos: "fw", name: "osilike", num: 29, isCaptain: false, swapColor: false, isRemoved: false},
+     { id: useId(), pos: "mf", name: "jesse", num: 14, isCaptain: false, swapColor: false, isRemoved: false},
+
+{ id: useId(), pos: "fw", name: "bueze", num: 22, isCaptain: false, swapColor: false, isRemoved: false},
       ];
 return {teamPlayers}
 }
