@@ -28,6 +28,7 @@ export default {
       backgroundImage: {
         // "home-hero": "url('/assets/images/football-hero.jpg')"
         "football-field": "url('/src/assets/svg/football-field.svg')",
+        "soccor-bro": "url('https://ik.imagekit.io/onj3o7rvm/soccer-image.webp?updatedAt=1686258411481')"
       },
       boxShadow: {
         "user-select-shadow": "0px 0px 2px 2px #1d8e66",

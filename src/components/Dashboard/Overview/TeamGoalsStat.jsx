@@ -7,9 +7,9 @@ import Save from "../../../assets/svg/goalkeeper-save.svg"
 
 export default function TeamGoalsStat() {
   return (
-    <div className="basis-[30%] flex-1 bg-light-grey flex  flex-col items-center py-3 px-2 gap-4 rounded-md shadow-dashboard-card">
+    <div className="basis-[30%] flex-1 bg-light-grey flex justify-around  flex-col items-center py-3 px-2 gap-4 rounded-md shadow-dashboard-card">
         <p className="font-bold font-poppins w-full text-center">Goals Stats</p>
-      <div className="h-[6rem] w-[6rem] rounded-full flex flex-col items-center justify-center font-poppins text-[2rem] border-2 border-primary">
+      <div className="h-[7rem] w-[7rem] rounded-full flex flex-col items-center justify-center font-poppins text-[2rem] border-2 border-primary">
         10 <span className="text-[1rem] -mt-2">Games</span>
       </div>
       <div className="flex  flex-col md:flex-row gap-4 px-6">

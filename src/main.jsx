@@ -5,6 +5,10 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
+import Authentication from "./pages/Authentication.jsx" 
+import Login from "./components/Authentication/Login.jsx";
+import SignUp from "./components/Authentication/SignUp.jsx";
+
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -68,6 +72,13 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { element: <Authentication />, 
+children: [
+  {path: "/sign-in", element: <Login />},
+  {path: "/sign-up", element: <SignUp />},
+
+]
+}
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
