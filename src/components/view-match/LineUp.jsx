@@ -1,33 +1,38 @@
-import React from "react";
-import { IoMdShirt } from "react-icons/io";
-import { squad } from "./view-match-data";
+import React, { useState } from "react";
 import Squad from "./Squad";
-
+import { useTeamPlayers } from "../../hooks/useTeamPlayers";
 
 export default function LineUp() {
+  const [homeTeam, setHomeTeam] = useState(true);
+  const { teamPlayers } = useTeamPlayers();
+
+  const subs = teamPlayers.slice(11, teamPlayers.length + 1);
+
   return (
     <div className="mt-8 ">
-      <p className=" flex items-center rounded-[0_0_8px_8px] h-[2rem] px-8 py-4 w-fit text-center bg-primary mb-4">
-        Starters
-      </p>
-      <div className="flex flex-col vs:flex-row">
-        <Squad squad={squad} team="Home Team" />
-        <Squad squad={squad} team="Away Team" />
+      <div className="flex gap-4">
+        <button
+          onClick={() => setHomeTeam(true)}
+          className={`h-[2rem] px-4 rounded-md ${
+            homeTeam ? "bg-primary" : "bg-light-grey border-light-grey"
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => setHomeTeam(false)}
+          className={`h-[2rem] px-4 rounded-md  ${
+            !homeTeam ? "bg-primary" : "bg-light-grey border-light-grey"
+          } `}
+        >
+          Away
+        </button>
       </div>
-      <p className=" flex items-center rounded-[0_0_8px_8px] h-[2rem] px-8 py-4 w-fit text-center bg-primary mt-4 mb-4">
-        Subs
-      </p>
-      <div className="flex flex-col vs:flex-row">
-        <Squad squad={squad} team="Home Team" />
-        <Squad squad={squad} team="Away Team" />
-      </div>
-      <p className=" flex items-center rounded-[0_0_8px_8px] h-[2rem] px-8 py-4 w-fit text-center bg-primary mt-4 mb-4">
-        Managers
-      </p>
-      <div className="flex relative font-poppins">
-        <p className="w-1/2">Hon. Miracle</p>
-        <p className="1/2">Hon. Anderson</p>
-      </div>
+      {homeTeam ? (
+        <Squad lineUp={teamPlayers} subs={subs} formation="4231" manager="Anderson"/>
+      ) : (
+        <Squad lineUp={teamPlayers} subs={subs} formation="4141" manager="Miracle"/>
+      )}
     </div>
   );
 }

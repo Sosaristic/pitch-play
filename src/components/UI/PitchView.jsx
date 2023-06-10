@@ -65,8 +65,7 @@ function PlayersContainer({ players, lightGreen, handlePlayerClick, isSwapping }
   );
 }
 
-export default function PitchView({ players, handlePlayerClick, isSwapping }) {
-  const { teamLineUp, teamFormation } = useTeamData();
+export default function PitchView({teamLineUp, teamFormation, handlePlayerClick, isSwapping }) {
   const allFormations = getFormation(teamLineUp);
   const filteredFormation = allFormations?.filter((item) => item.name === teamFormation);
   const { name, formation } = filteredFormation[0];

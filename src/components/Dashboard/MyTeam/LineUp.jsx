@@ -14,6 +14,8 @@ export default function LineUp() {
   useClickAwayListener(modalRef, () => closePlayerModal());
   const {
     teamLineUp,
+    teamFormation,
+
     makeCaptain,
     playerModal,
     isSwapping,
@@ -82,7 +84,7 @@ export default function LineUp() {
     <div className="">
       <h1 className="text-lg mt-2 font-bold">Team Line Ups</h1>
       <div>
-        <PitchView handlePlayerClick={handlePlayerClick} isSwapping={isSwapping} />
+        <PitchView handlePlayerClick={handlePlayerClick} isSwapping={isSwapping} teamFormation={teamFormation} teamLineUp={teamLineUp}/>
       </div>
       <div>
         <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4">

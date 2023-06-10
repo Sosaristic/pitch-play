@@ -35,7 +35,7 @@ function FormationCard({values, activeIndex, handleActiveIndex}){
 
 
 export default function TeamFormation() {
-  const {handleTeamFormation} = useTeamData()
+  const {handleTeamFormation, teamLineUp, teamFormation,} = useTeamData()
   
   const [activeChip, setActiveChip] = useState(1)
   
@@ -48,7 +48,7 @@ handleTeamFormation(formationName)
   return (
     <div>
       <h1 className="text-lg mt-2 font-bold">Team Formation</h1>
-      <div><PitchView /></div>
+      <div><PitchView teamLineUp={teamLineUp} teamFormation={teamFormation}/></div>
       <div className='mt-4'>
         <p className='w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold'>Select Formation</p>
       </div>
