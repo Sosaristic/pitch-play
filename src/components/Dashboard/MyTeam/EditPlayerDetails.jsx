@@ -25,7 +25,7 @@ export default function EditPlayerDetails({
   lineUp,
 }) {
   const playerDetails = getPlayerDetails(playerId, lineUp);
-  const newInitialValues = {name: playerDetails.name, number: playerDetails.num}
+  const newInitialValues = {name: playerDetails?.name, number: playerDetails?.num}
    const playerEditModalRef = useRef();
   const id = useId();
   useClickAwayListener(playerEditModalRef, closeAddPlayerModal);

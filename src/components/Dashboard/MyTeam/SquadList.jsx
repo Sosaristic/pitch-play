@@ -6,7 +6,7 @@ import EditPlayerDetails from "./EditPlayerDetails";
 import { getPlayerDetails } from "../../../functions/helperFunctions";
 import { BsPlusLg } from "react-icons/bs";
 
-export default function SquadList({teamContext, setMinTeamLength}) {
+export default function SquadList({teamContext, setMinTeamLength, showAddPlayersModal, setShowAddPlayersModal}) {
   const {
     teamLineUp,
     removePlayer,
@@ -18,7 +18,6 @@ export default function SquadList({teamContext, setMinTeamLength}) {
   } = teamContext();
   const [displayConfirmation, setDisplayConfirmation] = useState(false);
   const [showEditPlayersModal, setShowEditPlayersModal] = useState(false);
-  const [showAddPlayersModal, setShowAddPlayersModal] = useState(false);
   const [isPlayerRemoved, setIsPlayerRemoved] = useState(false)
   const playerId = useRef(null);
 
@@ -98,12 +97,7 @@ setIsPlayerRemoved(false)
           />
         ))}
       </div>
-      <button
-        className="fixed bottom-20 lg:bottom-6 hover:scale-[1.2] transition-all duration-200 z-100 right-2 text-[2rem] h-[2.5rem]  w-[2.5rem] shadow-lg shadow-hover md:h-[3.5rem] md:w-[3.5rem] lg:h-[3.5rem] lg:w-[3.5rem] bg-primary flex items-center justify-center rounded-full"
-        onClick={() => setShowAddPlayersModal(true)}
-      >
-        <BsPlusLg />
-      </button>
+     
 
       {showEditPlayersModal && (
         <EditPlayerDetails

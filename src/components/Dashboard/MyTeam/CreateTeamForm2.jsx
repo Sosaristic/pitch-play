@@ -1,50 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNewTeamData } from "../../../context/CreateTeamData";
 import SquadList from "./SquadList";
 import { BsArrowLeft } from "react-icons/bs";
+import { Button } from "../../UI";
+import { IoMdPersonAdd } from "react-icons/io";
 
 export default function TeamSquad({ handlePrev, handleFinish }) {
   const { teamLineUp, setShowNotification } = useNewTeamData();
+  const [showAddPlayersModal, setShowAddPlayersModal] = useState(false);
+
 
   const handleSecondForm = () => {
     if (teamLineUp.length >= 11) {
       handleFinish();
-    }
-    else{
-      setShowNotification(true)
+    } else {
+      setShowNotification(true);
     }
   };
   return (
     <main className="flex flex-col relative">
       <div className="flex items-center ">
-        <h2 className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">
-          Add Players
-        </h2>
-        <p className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ml-auto">
+        <p className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">
           {teamLineUp.length} Players
         </p>
+        <div className="ml-auto">
+          <Button
+            type="button"
+            value="Add"
+            startIcon={<IoMdPersonAdd />}
+            onClick={() => setShowAddPlayersModal(true)}
+          />
+        </div>
       </div>
       <section>
-        <SquadList teamContext={useNewTeamData} />
+        <SquadList
+          teamContext={useNewTeamData}
+          showAddPlayersModal={showAddPlayersModal}
+          setShowAddPlayersModal={setShowAddPlayersModal}
+        />
       </section>
       <div className="flex justify-center gap-4 mt-4">
-        <button
-          type="button"
-          className="flex gap-2 items-center bg-primary px-4 rounded-sm h-[3rem]"
-          onClick={handlePrev}
-        >
-          Back{" "}
-          <span className="text-[1.2rem]">
-            <BsArrowLeft />
-          </span>
-        </button>
-        <button
-          type="button"
-          className="flex gap-2 items-center bg-primary px-4 rounded-sm lg:h-[3rem]"
-          onClick={handleSecondForm}
-        >
-          Finish
-        </button>
+       <div><Button type="button" startIcon={<BsArrowLeft />} value="Prev" onClick={handlePrev}/></div>
+       <div><Button type="button" value="Finish" onClick={handleSecondForm}/></div>
       </div>
     </main>
   );

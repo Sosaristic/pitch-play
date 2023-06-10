@@ -1,35 +1,54 @@
 import React, { useState } from "react";
+import { useFormik } from "formik";
+
 import { IoMdShirt } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
 import { regEx } from "../../Form/regex";
 
 import { TextField } from "../../Form";
+import { Button } from "../../UI";
+import { teamDetailsSchema } from "../../Form/schemaValidation";
 
 export default function CreateTeamForm1({ handleFormOneSubmit }) {
-  const [teamData, setTeamData] = useState({
-    teamName: "Manchester United",
-    teamManager: "Anderson",
+  const [teamColors, setTeamColors] = useState({
+    
     firstColor: "#8a2be2",
     secondColor: "#a52a2a",
     thirdColor: "#00008b",
   });
 
+  const formik = useFormik({
+    initialValues: {
+      teamName: "Manchester United",
+      teamManager: "Anderson",
+     
+    },
+    validationSchema: teamDetailsSchema,
+    onSubmit: (values) => {
+      const teamData = {...values, ...teamColors}
+      handleFormOneSubmit(teamColors);
+
+    },
+  });
+
+
+
   const colorDetails = [
-    { id: 1, title: "Home Jersey", name: "firstColor", value: teamData.firstColor },
-    { id: 2, title: "Away Jersey", name: "secondColor", value: teamData.secondColor },
-    { id: 3, title: "Third Jersey", name: "thirdColor", value: teamData.thirdColor },
+    { id: 1, title: "Home Jersey", name: "firstColor", value: teamColors.firstColor },
+    { id: 2, title: "Away Jersey", name: "secondColor", value: teamColors.secondColor },
+    { id: 3, title: "Third Jersey", name: "thirdColor", value: teamColors.thirdColor },
   ];
 
   const handleInputChange = ({ target: { name, value } }) => {
-    setTeamData({
-      ...teamData,
+    setTeamColors({
+      ...teamColors,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleFormOneSubmit(teamData);
+    handleFormOneSubmit(teamColors);
   };
 
   return (
@@ -40,26 +59,30 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
         </h2>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
           className="mt-4 flex flex-col gap-4 items-center md:w-[70%] lg:w-[60%] font-poppins mx-auto text-gray-300"
         >
           <div className="w-full">
-            <TextField
-              label="Team Name"
-              value={teamData.teamName}
-              name="teamName"
-              onChange={handleInputChange}
-              regex={regEx.name}
-            />
+          <TextField
+            label="Team Name"
+            id="team-name"
+            name="teamName"
+            value={formik.values.teamName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            errorMsg={formik.errors.teamName}
+          />
           </div>
           <div className="w-full">
-            <TextField
-              label="Manager Name"
-              value={teamData.teamManager}
-              name="teamManager"
-              onChange={handleInputChange}
-              regex={regEx.name}
-            />
+          <TextField
+            label="Manager Name"
+            name="teamManager"
+            id="team-manager"
+            value={formik.values.teamManager}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            errorMsg={formik.errors.teamManager}
+          />
           </div>
           <div className="w-full">
             <p className="font-[900] mt-2 mb-2">Choose Team Colors</p>
@@ -89,13 +112,7 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="text-[1.2rem] flex items-center gap-2 text-white mt-8 bg-primary rounded-sm px-6 py-1 transition-colors duration-300 lg:hover:bg-hover "
-          >
-            Next
-            <span><BsArrowRight /></span>
-          </button>
+         <div><Button type="submit" endIcon={<BsArrowRight />} disabled={formik.errors.teamManager || formik.errors.teamName} value="Next"/></div>
         </form>
       </div>
     </div>
