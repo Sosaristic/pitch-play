@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef, useId } from "react";
-import { PopOver } from "../../UI";
+import React, { useState, useEffect, useRef, useId, } from "react";
+import { Button, PopOver } from "../../UI";
 import { TextField, Select } from "../../Form";
 import { regEx } from "../../Form/regex";
 import { useTeamData } from "../../../context/MyTeamData";
 import { getPlayerDetails } from "../../../functions/helperFunctions";
 import { TfiClose } from "react-icons/tfi";
 import useClickAwayListener from "../../../hooks/useClickAway";
+import { useFormik } from "formik";
+import { editPlayerModalSchema } from "../../Form/schemaValidation";
 
 const position = [
   { id: 1, name: "GoalKeeper", value: "gk" },
@@ -20,94 +22,101 @@ export default function EditPlayerDetails({
   isEditing,
   editPlayersDetails,
   addPlayer,
-  
-  lineUp
+  lineUp,
 }) {
-  const playerEditModalRef = useRef();
+  const playerDetails = getPlayerDetails(playerId, lineUp);
+  const newInitialValues = {name: playerDetails.name, number: playerDetails.num}
+   const playerEditModalRef = useRef();
   const id = useId();
   useClickAwayListener(playerEditModalRef, closeAddPlayerModal);
-  const playerDetails = getPlayerDetails(playerId, lineUp);
-  const [formValues, setFormValues] = useState({
-    playerName: "",
-    playerNumber: "",
-  });
-  const [selectPlayerPosition, setSelectPlayerPosition] = useState(position[0]);
+   const [selectPlayerPosition, setSelectPlayerPosition] = useState(position[0]);
   const [numberTaken, setNumberTaken] = useState(false);
 
-  useEffect(() => {
-    
-      checkNumberAvailability();
-    
-  }, [formValues]);
+  const formik = useFormik({
+    initialValues: isEditing?  newInitialValues : {name: "", number: ""},
+    validationSchema: editPlayerModalSchema,
+    onSubmit: (values) => {
 
-  useEffect(() => {
-    if (isEditing && playerDetails != undefined) {
-      setFormValues({
-        ...formValues,
-        playerName: playerDetails.name,
-        playerNumber: playerDetails.num,
-      });
-    }
-  }, [isEditing]);
-
-  const handleOnChange = ({ target: { name, value } }) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const handleSelectValue = (e) => {
-    setSelectPlayerPosition(e);
-  };
-
-  function checkNumberAvailability() {
-    const playerDetails = getPlayerDetails(playerId, lineUp);
-    if (isEditing) {
-      const isNumberExist = lineUp?.some(
-        (player) =>
-          player.num == formValues.playerNumber && formValues.playerNumber != playerDetails.num
-      );
-      if (isNumberExist && formValues.playerNumber !== "") {
-        setNumberTaken(true);
-      } else {
-        setNumberTaken(false);
+      const playerData = {
+        name: values.name,
+        num: values.number,
+        id,
+        pos: selectPlayerPosition.value
       }
-    } else {
-      const isNumberExist = lineUp?.some((player) => player.num == formValues.playerNumber);
-      if (isNumberExist && formValues.playerNumber !== "") {
-        setNumberTaken(true);
-      } else {
-        setNumberTaken(false);
-      }
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isEditing) {
-      const editDetails = {
-        ...formValues,
+      if(isEditing){
+         const editDetails = {
+        playerName: values.name,
+        playerNumber: values.number,
         position: selectPlayerPosition.value,
         playerId,
       };
       editPlayersDetails(editDetails);
       closeAddPlayerModal();
-    } else {
-      const playerData = {
-        name: formValues.playerName,
-        num: formValues.playerNumber,
-        id,
-        pos: selectPlayerPosition.value,
-      };
-      addPlayer(playerData);
-      closeAddPlayerModal();
-    }
+      }
+      else{
+        addPlayer(playerData)
+      }
+      closeAddPlayerModal()
+
+    },
+  });
+
+
+  useEffect(() => {
+    checkNumberAvailability();
+  }, [formik.values]);
+
+ 
+
+  const handleSelectValue = (e) => {
+    setSelectPlayerPosition(e);
   };
+
+function handleNumberExists(numberExists){
+ if (numberExists && formik.values.number !== "") {
+        setNumberTaken(true);
+      } else {
+        setNumberTaken(false);
+      }
+}
+
+  function checkNumberAvailability() {
+    if (isEditing) {
+      const isNumberExist = lineUp.some(
+        (player) => player.num == formik.values.number && formik.values.number != playerDetails.num
+      );
+      handleNumberExists(isNumberExist)
+    } else {
+      const isNumberExist = lineUp.some((player) => player.num == formik.values.number);
+     handleNumberExists(isNumberExist)
+    }
+  }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (isEditing) {
+  //     const editDetails = {
+  //       ...formValues,
+  //       position: selectPlayerPosition.value,
+  //       playerId,
+  //     };
+  //     editPlayersDetails(editDetails);
+  //     closeAddPlayerModal();
+  //   } else {
+  //     const playerData = {
+  //       name:formik.values.name,
+  //       num:formik.values.number,
+  //       id,
+  //       pos: selectPlayerPosition.value,
+  //     };
+  //     addPlayer(playerData);
+  //     closeAddPlayerModal();
+  //   }
+  // };
   return (
     <PopOver>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={formik.handleSubmit}
         ref={playerEditModalRef}
         className="player-details absolute bottom-[-50%] min-h-[10rem] text-black max-h-fit flex flex-col w-[90%] md:w-[60%] lg:w-[40%] py-3  bg-white rounded-md  px-4"
       >
@@ -118,17 +127,16 @@ export default function EditPlayerDetails({
           <TextField
             type="text"
             label="Player Name"
-            name="playerName"
-            value={formValues.playerName}
-            onChange={handleOnChange}
+            name="name"
             placeholder="Player name"
-            id="player-name"
-            regex={regEx.name}
-            errorMsg="Invalid name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            errorMsg={formik.touched.name && formik.errors.name}
           />
         </div>
-        <div className="flex items-end gap-2 mt-2">
-          <div className="flex-1">
+        <div className="flex items-center gap-2 mt-2 h-[4rem]">
+          <div className="flex-1 mt-1">
             <Select
               listData={position}
               value={selectPlayerPosition}
@@ -138,19 +146,19 @@ export default function EditPlayerDetails({
           </div>
           <div className="flex-1 h-full relative">
             <TextField
-              value={formValues.playerNumber}
               placeholder="Number"
-              name="playerNumber"
-              onChange={handleOnChange}
+              name="number"
               label="Number"
-              type="number"
-              regex={regEx.Number}
+              value={formik.values.number}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              errorMsg={formik.touched.number && formik.errors.number}
             />
           </div>
         </div>
 
         <p
-          className={`text-black self-end mr-4 text-[.8rem] ${
+          className={`text-black self-end mt-2 mr-4 text-[.8rem] ${
             numberTaken ? "visible" : "invisible"
           } text-red-500`}
         >
@@ -158,20 +166,17 @@ export default function EditPlayerDetails({
         </p>
 
         <div className="flex justify-end mt-4 gap-4">
-          <button
-            type="button"
-            className="border border-primary rounded-lg px-4 py-1 text-primary hover:bg-hover hover:text-white"
-            onClick={closeAddPlayerModal}
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={numberTaken || formValues.playerName == ""}
-            className="border border-primary bg-primary disabled:bg-grey disabled:cursor-not-allowed text-white rounded-lg px-4 py-1 hover:border-hover"
-          >
-            Submit
-          </button>
+          <div className="w-fit">
+            <Button type="button" onClick={closeAddPlayerModal} value="Cancel" />
+          </div>
+
+          <div className="w-fit">
+            <Button
+              type="submit"
+              value="Submit"
+              disabled={numberTaken || formik.errors.name || formik.errors.number}
+            />
+          </div>
         </div>
         <div className="absolute text-[1.3rem] top-2 right-2" onClick={closeAddPlayerModal}>
           <TfiClose arial-visibility="hidden" />

@@ -23,3 +23,12 @@ export const loginSchema = Yup.object({
       .min(4, "Password is too short - should be 4 chars minimum.")
       .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
   });
+
+  export const editPlayerModalSchema = Yup.object({
+    name: Yup.string()
+    .max(8, "Must be 15 characters or less")
+    .required(" name is required"),
+    number: Yup.string()
+    .matches(/\d+/, "only number")
+    .required("number is required")
+  })
