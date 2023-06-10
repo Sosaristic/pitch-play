@@ -19,8 +19,8 @@ export default function TeamSquad({ handlePrev, handleFinish }) {
   };
   return (
     <main className="flex flex-col relative">
-      <div className="flex items-center ">
-        <p className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold mt-4 ">
+      <div className="flex items-center mt-2">
+        <p className="w-fit bg-primary p-2 rounded-bl-xl rounded-br-xl font-bold">
           {teamLineUp.length} Players
         </p>
         <div className="ml-auto">
