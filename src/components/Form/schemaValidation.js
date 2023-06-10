@@ -32,3 +32,12 @@ export const loginSchema = Yup.object({
     .matches(/\d+/, "only number")
     .required("number is required")
   })
+
+  export const teamDetailsSchema = Yup.object({
+    teamName: Yup.string()
+    .max(17, "Must be 17 characters or less")
+    .required(" name is required"),
+    teamManager: Yup.string()
+    .max(10, "Must be 15 characters or less")
+    .required(" name is required"),
+  })

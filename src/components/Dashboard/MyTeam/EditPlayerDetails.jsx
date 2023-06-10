@@ -92,27 +92,7 @@ function handleNumberExists(numberExists){
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (isEditing) {
-  //     const editDetails = {
-  //       ...formValues,
-  //       position: selectPlayerPosition.value,
-  //       playerId,
-  //     };
-  //     editPlayersDetails(editDetails);
-  //     closeAddPlayerModal();
-  //   } else {
-  //     const playerData = {
-  //       name:formik.values.name,
-  //       num:formik.values.number,
-  //       id,
-  //       pos: selectPlayerPosition.value,
-  //     };
-  //     addPlayer(playerData);
-  //     closeAddPlayerModal();
-  //   }
-  // };
+  
   return (
     <PopOver>
       <form
