@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "date-fns": "^2.30.0",
+    "firebase": "^9.22.2",
     "formik": "^2.4.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

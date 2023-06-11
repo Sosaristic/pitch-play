@@ -2,7 +2,6 @@ import React from "react";
 import { Hero, Chips, MatchCard } from "../components/Home";
 import { matchData } from "../components/Home/homeData";
 export default function Home() {
-    
   return (
     <main className="">
       
