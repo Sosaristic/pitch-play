@@ -271,5 +271,51 @@ box-shadow: 2px 2px 3px 2px #1b1b1b;
   .login{
     backface-visibility: hidden;
   }
+
+  /* custom radio button */
+.radio-label{
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  border: 1px solid #c74aae;
+  cursor: pointer;
+  /* overflow: hidden; */
+
+
+}
+.radio-label input[type=radio]{
+  visibility: hidden;
+}
+.radio-input-span{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #c74aae;
+}
+.radio-label input:checked ~ .radio-input-span{
+  background-color: #c74aae;
+}
+.radio-input-span::before{
+  content: "";
+  position: absolute;
+bottom: 3px;
+  width: 8px;
+  height: 14px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+display: none;
+}
+.radio-label input:checked ~ .radio-input-span::before{
+  display: block;
+}
+
   
 }

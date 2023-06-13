@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { TextField } from "../Form";
+import { RadioButton, TextField } from "../Form";
 import { Button } from "../UI";
-import { Link, useNavigate } from "react-router-dom";
-import { useLoginToken } from "../../hooks/useLoginToken";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useFirebaseAuthentication } from "../../service/useFirebaseAuthentication";
-import * as Yup from "yup";
 import { loginSchema } from "../Form/schemaValidation";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { setToken } = useLoginToken();
-  const {signUserInWithSession} = useFirebaseAuthentication()
+ const [rememberMe, setRemeberMe] = useState(false)
+  const { signUserInWithSession, signIn } = useFirebaseAuthentication();
 
   const formik = useFormik({
     initialValues: {
@@ -20,14 +17,19 @@ export default function Login() {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      
-     const {email, password} = values
-     signUserInWithSession(email, password)
+      const { email, password } = values;
+      if(rememberMe){
+        signIn(email, password)
+      }
+      else{
+        signUserInWithSession(email, password);
+
+      }
     },
   });
 
   return (
-    <div className="absolute w-[80%] bg-white login">
+    <div className="absolute w-[90%] bg-white login">
       <p className="text-center text-[1.8rem] font-bold font-jost"> Hello, Welcome back</p>
       <p className="text-center font-jost text-[1.2rem] font-[500]">
         {" "}
@@ -60,6 +62,8 @@ export default function Login() {
           onBlur={formik.handleBlur}
           errorMsg={formik.touched.password && formik.errors.password}
         />
+        <Link to={"/reset-password"} className="ml-auto text-primary text-sm hover:underline">Forgot Password?</Link>
+
         <div className="h-[3rem]">
           <Button
             type="submit"
@@ -67,13 +71,17 @@ export default function Login() {
             value="Log in"
           />
         </div>
-        <p>
-          {" "}
-          Don't have an account?{" "}
-          <Link to="sign-up" className="text-primary underline">
-            Sign Up
-          </Link>
-        </p>
+        <div className="flex gap-2">
+          <RadioButton name={"remember"} isChecked={rememberMe} onChange={()=>setRemeberMe(prev=>!prev)}/> <p>Remember me?</p>{" "}
+        </div>
+        
+          <p>
+            Don't have an account?{" "}
+            <Link to="sign-up" className="text-primary underline">
+              Sign Up
+            </Link>
+          </p>
+        
       </form>
     </div>
   );

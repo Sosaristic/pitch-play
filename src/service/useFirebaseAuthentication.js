@@ -54,8 +54,9 @@ export const useFirebaseAuthentication = () => {
       setDisplayLoader(true);
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
-          console.log(userCredentials);
           setDisplayLoader(false);
+          console.log(userCredentials);
+          navigate("/dashboard/overview")
         })
         .catch((error) => {
           const errorMessage = error.code.slice(5).replace(/-/g, " ");
@@ -72,10 +73,7 @@ function signUserInWithSession(email, password){
 try {
   
   setPersistence(auth, browserSessionPersistence).then(()=>{
-    return signInWithEmailAndPassword(auth, email, password).then((userCredentials)=>{
-      setDisplayLoader(false)
-      console.log(userCredentials);
-    })
+    return signIn(email, password)
   }).catch((error)=>{
     console.log(error);
     const errorMessage = error.code.slice(5).replace(/-/g, " ");
@@ -96,5 +94,9 @@ try {
       });
   }
 
-  return { signUp, signIn, signUserOut, signUserInWithSession };
+  function checkIfUserIsSignedIn(){
+    return auth.currentUser
+  }
+
+  return { signUp, signIn, signUserOut, signUserInWithSession, checkIfUserIsSignedIn };
 };

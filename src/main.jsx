@@ -7,8 +7,8 @@ import { AppContextProvider } from "./context/AppContext.jsx";
 
 import Home from "./pages/Home.jsx";
 import Authentication from "./pages/Authentication.jsx" 
-import Login from "./components/Authentication/Login.jsx";
-import SignUp from "./components/Authentication/SignUp.jsx";
+import {ResetPassword, Login, SignUp} from "./components/Authentication"
+
 
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
@@ -77,6 +77,8 @@ const router = createBrowserRouter([
 children: [
   {path: "/sign-in", element: <Login />},
   {path: "/sign-up", element: <SignUp />},
+  {path: "/reset-password", element: <ResetPassword />},
+
 
 ]
 }

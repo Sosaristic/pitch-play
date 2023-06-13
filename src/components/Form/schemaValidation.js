@@ -41,3 +41,10 @@ export const loginSchema = Yup.object({
     .max(10, "Must be 15 characters or less")
     .required(" name is required"),
   })
+
+export const resetPasswordSchema = Yup.object({
+    email: Yup.string()
+      .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "invalid email address")
+      .required("no email provided"),
+   
+  });
