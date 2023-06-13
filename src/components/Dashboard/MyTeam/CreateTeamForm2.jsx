@@ -4,6 +4,7 @@ import SquadList from "./SquadList";
 import { BsArrowLeft } from "react-icons/bs";
 import { Button } from "../../UI";
 import { IoMdPersonAdd } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export default function TeamSquad({ handlePrev, handleFinish }) {
   const { teamLineUp, setShowNotification } = useNewTeamData();
@@ -14,7 +15,7 @@ export default function TeamSquad({ handlePrev, handleFinish }) {
     if (teamLineUp.length >= 11) {
       handleFinish();
     } else {
-      setShowNotification(true);
+      toast.info("Squad can't be less than 11")
     }
   };
   return (

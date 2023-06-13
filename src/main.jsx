@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
+import { RouterProvider, createBrowserRouter} from "react-router-dom";
+import { AppContextProvider } from "./context/AppContext.jsx";
 
 import Home from "./pages/Home.jsx";
 import Authentication from "./pages/Authentication.jsx" 
@@ -82,6 +83,8 @@ children: [
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <AppContextProvider>
     <RouterProvider router={router} />
+    </AppContextProvider>
   </React.StrictMode>
 );

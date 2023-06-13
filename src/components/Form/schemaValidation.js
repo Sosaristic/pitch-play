@@ -21,7 +21,7 @@ export const loginSchema = Yup.object({
     password: Yup.string()
       .required("No password provided")
       .min(4, "Password is too short - should be 4 chars minimum.")
-      .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+      .matches(/[a-zA-Z\d]/, "Password can only contain Latin letters."),
   });
 
   export const editPlayerModalSchema = Yup.object({

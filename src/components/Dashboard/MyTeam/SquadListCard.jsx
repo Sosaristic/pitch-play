@@ -10,7 +10,7 @@ const PlayerNumber = ({ num }) => {
     );
   };
   
-  export default function SquadListCard({ playerData, openDialog,  openEditPlayerDialog }) {
+  export default function SquadListCard({ playerData,  deletePlayerFromSquad,  openEditPlayerDialog }) {
     const { id, num, name, pos, isRemoved } = playerData;
   
     const setPlayerPositionLength = (position, type) => {
@@ -47,7 +47,7 @@ const PlayerNumber = ({ num }) => {
           <button
             type="button"
             className="text-primary lg:hover:text-inherit"
-            onClick={() => openDialog(id)}
+            onClick={() =>  deletePlayerFromSquad(id)}
           >
             <MdOutlineDelete />
           </button>

@@ -20,8 +20,7 @@ firstFormValues.current = formVales
 setSteps(prev=>prev + 1)
   }
   const handleFinish = ()=>{
-console.log(teamLineUp);
-console.log(firstFormValues);
+
 navigate("/dashboard/my-team", {replace: true})
   }
   return (

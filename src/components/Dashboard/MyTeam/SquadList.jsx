@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Notification, ConfirmationDialog } from "../../UI";
+import {toast} from "react-toastify"
+
+import { ConfirmationDialog } from "../../UI";
 import SquadListCard from "./SquadListCard";
 import EditPlayerDetails from "./EditPlayerDetails";
 import { getPlayerDetails } from "../../../functions/helperFunctions";
-import { BsPlusLg } from "react-icons/bs";
-
 export default function SquadList({teamContext, setMinTeamLength, showAddPlayersModal, setShowAddPlayersModal}) {
   const {
     teamLineUp,
     removePlayer,
-    showNotification,
-    setShowNotification,
     editPlayersDetails,
     addPlayer,
     handleRemoveAnimation
@@ -21,13 +19,7 @@ export default function SquadList({teamContext, setMinTeamLength, showAddPlayers
   const [isPlayerRemoved, setIsPlayerRemoved] = useState(false)
   const playerId = useRef(null);
 
-  useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setShowNotification(false);
-    }, 5000);
-    return () => clearTimeout(timeOut);
-  }, [showNotification]);
-
+ 
   useEffect(()=>{
 if(isPlayerRemoved){
   const timeOut = setTimeout(()=>{
@@ -45,10 +37,9 @@ setIsPlayerRemoved(false)
     setDisplayConfirmation(false);
   };
 
-  const openDialog = (id) => {
+  const deletePlayerFromSquad = (id) => {
     if (teamLineUp.length <= 11 && setMinTeamLength) {
-      setShowNotification(true);
-
+      toast.info("Squad Players can't be less than 11")
       return;
     }
     setDisplayConfirmation(true);
@@ -92,7 +83,7 @@ setIsPlayerRemoved(false)
             playerData={item}
             removePlayer={removePlayer}
             // editPlayer = {handleEditAddPlayer}
-            openDialog={openDialog}
+            deletePlayerFromSquad={deletePlayerFromSquad}
             openEditPlayerDialog={openEditPlayerDialog}
           />
         ))}
@@ -118,7 +109,6 @@ setIsPlayerRemoved(false)
         />
       )}
 
-      {showNotification && <Notification />}
       {displayConfirmation && (
         <ConfirmationDialog
           closeDialog={closeConfirmationDialog}

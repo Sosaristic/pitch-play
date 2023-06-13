@@ -4,7 +4,7 @@ export default function Loader() {
   return (
     <PopOver>
 
-        <span class="loader"></span>
+        <span className="loader"></span>
     </PopOver>
   )
 }

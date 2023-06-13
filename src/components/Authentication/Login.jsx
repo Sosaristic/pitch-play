@@ -4,12 +4,14 @@ import { Button } from "../UI";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginToken } from "../../hooks/useLoginToken";
 import { useFormik } from "formik";
+import { useFirebaseAuthentication } from "../../service/useFirebaseAuthentication";
 import * as Yup from "yup";
 import { loginSchema } from "../Form/schemaValidation";
 
 export default function Login() {
   const navigate = useNavigate();
   const { setToken } = useLoginToken();
+  const {signUserInWithSession} = useFirebaseAuthentication()
 
   const formik = useFormik({
     initialValues: {
@@ -18,9 +20,9 @@ export default function Login() {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      setToken(true);
-      navigate("/dashboard/overview");
-      console.log(values);
+      
+     const {email, password} = values
+     signUserInWithSession(email, password)
     },
   });
 

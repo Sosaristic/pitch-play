@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "../UI";
 import { MdArrowDropDown } from "react-icons/md";
 import { useLoginToken } from "../../hooks/useLoginToken";
+import { useFirebaseAuthentication } from "../../service/useFirebaseAuthentication";
 
 export default function DashboardHeader() {
+  const {signUserOut} = useFirebaseAuthentication()
   const {removeToken} = useLoginToken()
   const navigate = useNavigate()
 
   const handleLogout = ()=>{
-removeToken()
+signUserOut()
 navigate("/sign-in")
-
   }
   return (
     <header className="p-2 flex items-center">

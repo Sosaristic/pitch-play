@@ -3,9 +3,13 @@ import { useLocation } from "react-router-dom";
 import SoccerBro from "../assets/svg/soccer-bro.svg";
 import Login from "../components/Authentication/Login";
 import SignUp from "../components/Authentication/SignUp";
-
+import { Loader } from "../components/UI";
+import { ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAppContext } from "../context/AppContext";
 export default function Authentication() {
   const {pathname} = useLocation()
+  const {displayLoader} = useAppContext()
  
   return (
     <div className=" min-h-screen flex text-dark bg-primary relative">
@@ -18,6 +22,8 @@ export default function Authentication() {
           <SignUp />
      
       </div>
+     
+      {displayLoader && <Loader />}
     </div>
   );
 }

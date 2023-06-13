@@ -4,8 +4,10 @@ import { Button } from "../UI";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { signUpSchema } from "../Form/schemaValidation";
+import { useFirebaseAuthentication } from "../../service/useFirebaseAuthentication";
 
-export default function SignUp() {
+export  default function SignUp() {
+  const {signUp} = useFirebaseAuthentication()
   const formik = useFormik({
     initialValues: {
       lastName: "",
@@ -15,7 +17,8 @@ export default function SignUp() {
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const {email, password} = values
+      signUp(email, password)
     },
   });
 
