@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
   setPersistence,
-  browserLocalPersistence,
+  sendEmailVerification,
   browserSessionPersistence
 } from "firebase/auth";
 import { auth } from "./firebase";
@@ -22,7 +22,7 @@ export const useFirebaseAuthentication = () => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const uid = user.uid;
+      const uid = user.emailVerified;
       console.log(uid);
     } else {
       console.log("user is signed out");
@@ -37,6 +37,11 @@ export const useFirebaseAuthentication = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
           const user = userCredentials.user;
+          sendEmailVerification(user).then(()=>{
+            console.log("email verifucation sent");
+          }).catch((error)=>{
+            console.log(error);
+          })
           console.log(user);
           setDisplayLoader(false);
         })
@@ -56,6 +61,7 @@ export const useFirebaseAuthentication = () => {
         .then((userCredentials) => {
           setDisplayLoader(false);
           console.log(userCredentials);
+        
           navigate("/dashboard/overview")
         })
         .catch((error) => {

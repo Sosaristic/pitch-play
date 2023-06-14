@@ -14,8 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const { checkIfUserIsSignedIn } = useFirebaseAuthentication();
-  const navigate = useNavigate();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
