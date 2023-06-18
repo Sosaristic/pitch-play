@@ -24,7 +24,8 @@ export  default function SignUp() {
 
   
   return (
-    <div className="w-[90%] sign-up bg-white absolute">
+    <div className="w-full   bg-white">
+      
       <p className="text-center text-[1.8rem] font-bold font-jost"> Hey, Welcome to Pitch Play</p>
       <p className="text-center font-jost text-[1.2rem] font-[500]"> Create An Account</p>
 
@@ -89,7 +90,7 @@ export  default function SignUp() {
         <p>
           {" "}
           Have an account?{" "}
-          <Link to="/sign-in" className="text-primary underline">
+          <Link to="/sign-in" className="text-primary hover:underline">
             Sign in
           </Link>
         </p>

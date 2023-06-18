@@ -29,7 +29,7 @@ export default function Login() {
   });
 
   return (
-    <div className="absolute w-[90%] bg-white login">
+    <div className=" w-full bg-white">
       <p className="text-center text-[1.8rem] font-bold font-jost"> Hello, Welcome back</p>
       <p className="text-center font-jost text-[1.2rem] font-[500]">
         {" "}

@@ -266,10 +266,18 @@ box-shadow: 2px 2px 3px 2px #1b1b1b;
   }
   .sign-up{
     transform: rotateY(180deg);
+    overflow: hidden;
     backface-visibility: hidden;
+    z-index: 1;
+  }
+  .back-content{
+    transform: rotateY(180deg);
+    backface-visibility: initial;
+
   }
   .login{
     backface-visibility: hidden;
+    transform: rotateY(0deg);
   }
 
   /* custom radio button */
