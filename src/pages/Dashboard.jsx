@@ -28,7 +28,7 @@ export default function Dashboard() {
         <Loader />
       ) : (
         <div>
-          {user ? (
+          {user?.emailVerified ? (
             <div>
               {" "}
               <MyTeamDataProvider>
