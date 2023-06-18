@@ -64,7 +64,7 @@ export default function Authentication() {
         <Loader />
       ) : (
         <div>
-          {!user ? (
+          {!user.emailVerified ? (
             <div className=" min-h-screen flex text-dark bg-primary relative">
             <div className="w-1/2 flex-1 hidden lg:block">
               <img src={SoccerBro} alt="" />
