@@ -7,7 +7,7 @@ import { AppContextProvider } from "./context/AppContext.jsx";
 
 import Home from "./pages/Home.jsx";
 import Authentication from "./pages/Authentication.jsx" 
-import {ResetPassword, Login, SignUp} from "./components/Authentication"
+import {ResetPassword, Login, SignUp, Verification} from "./components/Authentication"
 
 
 import ViewMatch from "./pages/ViewMatch.jsx";
@@ -78,6 +78,7 @@ children: [
   {path: "/sign-in", element: <Login />},
   {path: "/sign-up", element: <SignUp />},
   {path: "/reset-password", element: <ResetPassword />},
+  {path: "/verification", element: <Verification />}
 
 
 ]

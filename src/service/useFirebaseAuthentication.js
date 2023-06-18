@@ -39,6 +39,7 @@ export const useFirebaseAuthentication = () => {
           const user = userCredentials.user;
           sendEmailVerification(user).then(()=>{
             console.log("email verifucation sent");
+            navigate("/verification", {replace: true, state: user.email})
           }).catch((error)=>{
             console.log(error);
           })
@@ -61,6 +62,9 @@ export const useFirebaseAuthentication = () => {
         .then((userCredentials) => {
           setDisplayLoader(false);
           console.log(userCredentials);
+          if(!userCredentials.user.emailVerified){
+            return toast.info("Email is not verified")
+          }
         
           navigate("/dashboard/overview")
         })
