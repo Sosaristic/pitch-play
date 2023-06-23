@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   setPersistence,
   sendEmailVerification,
-  browserSessionPersistence
+  browserSessionPersistence,
 } from "firebase/auth";
 import { auth } from "./firebase";
 import { toast } from "react-toastify";
@@ -15,15 +15,13 @@ import { useOnlineStatus } from "../hooks/useOnlineStatus";
 import { useAppContext } from "../context/AppContext";
 
 export const useFirebaseAuthentication = () => {
-  
   const navigate = useNavigate();
-  const { setDisplayLoader, } = useAppContext();
+  const { setDisplayLoader } = useAppContext();
   const { onlineStatus } = useOnlineStatus();
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const uid = user.emailVerified;
-      console.log(uid);
+      console.log("user is logged in");
     } else {
       console.log("user is signed out");
     }
@@ -37,12 +35,14 @@ export const useFirebaseAuthentication = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
           const user = userCredentials.user;
-          sendEmailVerification(user).then(()=>{
-            console.log("email verifucation sent");
-            navigate("/verification", {replace: true, state: user.email})
-          }).catch((error)=>{
-            console.log(error);
-          })
+          sendEmailVerification(user)
+            .then(() => {
+              console.log("email verifucation sent");
+              navigate("/verification", { replace: true, state: user.email });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
           console.log(user);
           setDisplayLoader(false);
         })
@@ -61,11 +61,6 @@ export const useFirebaseAuthentication = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
           setDisplayLoader(false);
-          console.log(userCredentials);
-          if(!userCredentials.user.emailVerified){
-            return toast.info("Email is not verified")
-          }
-        
           navigate("/dashboard/overview")
         })
         .catch((error) => {
@@ -76,37 +71,52 @@ export const useFirebaseAuthentication = () => {
     } catch (error) {}
   }
 
-function signUserInWithSession(email, password){
-  if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
-  setDisplayLoader(true);
+  function signUserInWithSession(email, password) {
+    if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
+    setDisplayLoader(true);
 
-try {
-  
-  setPersistence(auth, browserSessionPersistence).then(()=>{
-    return signIn(email, password)
-  }).catch((error)=>{
-    console.log(error);
-    const errorMessage = error.code.slice(5).replace(/-/g, " ");
-    toast.error(errorMessage);
-    setDisplayLoader(false);
-  })
-} catch (error) {
-  console.log(error);
-}
-
-} 
+    try {
+      setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+          return signIn(email, password);
+        })
+        .catch((error) => {
+          console.log(error);
+          const errorMessage = error.code.slice(5).replace(/-/g, " ");
+          toast.error(errorMessage);
+          setDisplayLoader(false);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function signUserOut() {
     signOut(auth)
-      
+      .then(() => {
+        navigate("/sign-in");
+      })
+
       .catch((error) => {
         console.log(error);
       });
   }
 
-  function checkIfUserIsSignedIn(){
-    return auth.currentUser
+  function checkIfUserIsSignedIn() {
+    return auth.currentUser;
   }
 
-  return { signUp, signIn, signUserOut, signUserInWithSession, checkIfUserIsSignedIn };
+  function checkUserSignedIn() {
+    return new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          resolve(user);
+        } else {
+          reject(new Error("user not signed in"));
+        }
+      });
+    });
+  }
+
+  return { signUp, signIn, signUserOut, signUserInWithSession, checkIfUserIsSignedIn, checkUserSignedIn };
 };

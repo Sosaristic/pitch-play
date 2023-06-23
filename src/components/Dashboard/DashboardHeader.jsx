@@ -12,7 +12,6 @@ export default function DashboardHeader() {
 
   const handleLogout = ()=>{
 signUserOut()
-navigate("/sign-in")
   }
   return (
     <header className="p-2 flex items-center">
