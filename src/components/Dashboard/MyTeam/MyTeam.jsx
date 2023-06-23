@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Outlet, Link, Navigate } from "react-router-dom";
 import { CreateTeam, MyTeamNav } from "../../Dashboard";
+import { useAppContext } from "../../../context/AppContext";
+import { UserHasNoTeam } from "../../UI";
 export default function MyTeam() {
-  const haveTeam = true
+const {userHasTeam} = useAppContext()
 
- 
+ if(!userHasTeam){
+  return <div><UserHasNoTeam /></div>
+ }
   return (
     <div className="w-full relative">
      

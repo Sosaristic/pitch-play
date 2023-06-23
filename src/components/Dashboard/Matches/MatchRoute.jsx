@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { HiPlus } from "react-icons/hi";
 
-import { PopOver } from "../../UI";
+import { PopOver, UserHasNoTeam } from "../../UI";
 import CreateMatchModal from "./CreateMatchModal";
 import useClickAwayListener from "../../../hooks/useClickAway";
+import { useAppContext } from "../../../context/AppContext";
 
 const links = [
   { id: 1, name: "live", url: "/dashboard/matches" },
@@ -13,6 +14,7 @@ const links = [
 ];
 
 export default function MatchRoute() {
+  const {userHasTeam} = useAppContext()
   const navigate = useNavigate();
   const modalRef = useRef();
   const { pathname } = useLocation();
@@ -42,6 +44,11 @@ export default function MatchRoute() {
       return false;
     }
   }
+
+if(!userHasTeam){
+  return <div><UserHasNoTeam /></div>
+}
+
   return (
     <div className="flex flex-col">
       {checkPath() && (

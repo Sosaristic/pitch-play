@@ -9,7 +9,6 @@ import Home from "./pages/Home.jsx";
 import Authentication from "./pages/Authentication.jsx" 
 import {ResetPassword, Login, SignUp, Verification} from "./components/Authentication"
 
-
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";

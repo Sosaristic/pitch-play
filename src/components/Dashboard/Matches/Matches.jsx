@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useNavigate, } from "react-router-dom";
 
 import TeamsCard from "../../UI/TeamsCard";
 import { matchResult } from "../../UI/UIData";
-
 
 export default function Matches() {
   const navigate = useNavigate();

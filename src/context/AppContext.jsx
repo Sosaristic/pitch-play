@@ -11,8 +11,9 @@ const [notification, setNotification] = useState({
 })
 const [displayLoader, setDisplayLoader] = useState(false)
 const [user, setUser] = useState(null)
+const [userHasTeam, setUserHasTeam]= useState(false)
 
-  const value = {user, setUser, displayLoader, setDisplayLoader};
+  const value = {user, setUser, displayLoader, setDisplayLoader, userHasTeam, setUserHasTeam};
 
   return <AppContext.Provider value={value}>
     <ToastContainer 

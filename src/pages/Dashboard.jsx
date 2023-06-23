@@ -9,14 +9,15 @@ import { auth } from "../service/firebase";
 import { useFirebaseFirestore } from "../service/useFirebaseFirestore";
 import { useFirebaseAuthentication } from "../service/useFirebaseAuthentication";
 import { onAuthStateChanged } from "firebase/auth";
+import { useAppContext } from "../context/AppContext";
 
 import "react-toastify/dist/ReactToastify.css";
 export default function Dashboard() {
+  const {setUserHasTeam} = useAppContext()
   const { getTeamFromDB } = useFirebaseFirestore();
   const { checkIfUserIsSignedIn, checkUserSignedIn } = useFirebaseAuthentication();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(false);
-  const [userHasTeam, setUserHasTeam] = useState(false);
 
     checkUserSignedIn()
       .then((user) => {
@@ -25,7 +26,7 @@ export default function Dashboard() {
       })
       .then((userTeam) => {
         if (userTeam) {
-          setUserHasTeam(true);
+          setUserHasTeam(userTeam);
         }
         setUser(true);
       })
@@ -49,9 +50,6 @@ export default function Dashboard() {
     return <Navigate to={"/sign-in"} />;
   }
 
-  if(!userHasTeam && !loading){
-    return <Navigate to={"/dashboard/my-team/create-team"}/>
-  }
 
   return (
     <div>

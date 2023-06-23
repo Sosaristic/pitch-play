@@ -4,8 +4,18 @@ import GamesPlayedStat from './GamesPlayedStat'
 import TeamGoalsStat from './TeamGoalsStat'
 import ResultsCard from './ResultsCard'
 import FixturesCard from './FixturesCard'
+import { useAppContext } from '../../../context/AppContext'
+import { UserHasNoTeam } from '../../UI'
 
 export default function Overview() {
+const {userHasTeam} = useAppContext()
+console.log(userHasTeam);
+if(!userHasTeam){
+  return <div className=''>
+   <UserHasNoTeam />
+  </div>
+}
+
   return (
     <main className='px-2 lg:px-8 pb-[4rem] lg:pb-0'>
         <section>
