@@ -31,7 +31,6 @@ export default function Dashboard() {
         setUser(true);
       })
       .catch((error) => {
-        toast.error("Email not verified")
       })
 
       .finally(() => {
