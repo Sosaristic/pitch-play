@@ -61,11 +61,23 @@ export const useFirebaseAuthentication = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
           setDisplayLoader(false);
-          navigate("/dashboard/overview")
+          const isVerified = userCredentials.user.emailVerified;
+          console.log(`user is verified ${isVerified}`);
+          if (!isVerified) {
+            throw new Error("auth/Email-not-verified");
+          }
+          navigate("/dashboard/overview");
         })
         .catch((error) => {
-          const errorMessage = error.code.slice(5).replace(/-/g, " ");
-          toast.error(errorMessage);
+          if (error.message == "auth/Email-not-verified") {
+            const errorMessage = error.message.slice(5).replace(/-/g, " ");
+            toast.error(errorMessage);
+
+          } else {
+            const errorMessage = error.code.slice(5).replace(/-/g, " ");
+            toast.error(errorMessage);
+          }
+
           setDisplayLoader(false);
         });
     } catch (error) {}
@@ -118,5 +130,12 @@ export const useFirebaseAuthentication = () => {
     });
   }
 
-  return { signUp, signIn, signUserOut, signUserInWithSession, checkIfUserIsSignedIn, checkUserSignedIn };
+  return {
+    signUp,
+    signIn,
+    signUserOut,
+    signUserInWithSession,
+    checkIfUserIsSignedIn,
+    checkUserSignedIn,
+  };
 };

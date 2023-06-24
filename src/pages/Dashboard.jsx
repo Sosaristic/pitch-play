@@ -4,7 +4,7 @@ import { Loader } from "../components/UI";
 import { Outlet, Navigate } from "react-router-dom";
 import { MyTeamDataProvider } from "../context/MyTeamData";
 import { NewTeamDataProvider } from "../context/CreateTeamData";
-import { ToastContainer, Zoom } from "react-toastify";
+import { ToastContainer, Zoom, toast } from "react-toastify";
 import { auth } from "../service/firebase";
 import { useFirebaseFirestore } from "../service/useFirebaseFirestore";
 import { useFirebaseAuthentication } from "../service/useFirebaseAuthentication";
@@ -21,7 +21,7 @@ export default function Dashboard() {
 
     checkUserSignedIn()
       .then((user) => {
-        const userEmail = user.email;
+        const userEmail = user.email;        
         return getTeamFromDB(userEmail);
       })
       .then((userTeam) => {
@@ -31,7 +31,7 @@ export default function Dashboard() {
         setUser(true);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Email not verified")
       })
 
       .finally(() => {
@@ -69,7 +69,6 @@ export default function Dashboard() {
             <div className="fixed bottom-0 left-0 right-0 lg:hidden z-[100]">
               <BottomNav />
             </div>
-            <ToastContainer transition={Zoom} position="top-center" hideProgressBar theme="dark" />
           </main>
         </NewTeamDataProvider>
       </MyTeamDataProvider>
