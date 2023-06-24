@@ -12,6 +12,7 @@ import {ResetPassword, Login, SignUp, Verification} from "./components/Authentic
 import ViewMatch from "./pages/ViewMatch.jsx";
 import { LineUp, Summary, Statistics, Info } from "./components/view-match";
 import Dashboard from "./pages/Dashboard.jsx";
+import { ErrorBoundary} from "./components/UI"
 import {
   Matches,
   Overview,
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorBoundary />,
     children: [
       { path: "", element: <Home /> },
       {
