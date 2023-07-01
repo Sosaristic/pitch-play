@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 
 import { IoMdShirt } from "react-icons/io";
 import { BsArrowRight } from "react-icons/bs";
-import { regEx } from "../../Form/regex";
 
 import { TextField } from "../../Form";
 import { Button } from "../../UI";
@@ -25,8 +24,8 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
     },
     validationSchema: teamDetailsSchema,
     onSubmit: (values) => {
-      const teamData = {...values, ...teamColors}
-      handleFormOneSubmit(teamColors);
+      const teamInformations = {...values, ...teamColors}
+      handleFormOneSubmit(teamInformations);
 
     },
   });
@@ -46,10 +45,7 @@ export default function CreateTeamForm1({ handleFormOneSubmit }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleFormOneSubmit(teamColors);
-  };
+ 
 
   return (
     <div>

@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateTeamForm1, CreateTeamForm2 } from "../../Dashboard";
-import { useNewTeamData } from "../../../context/CreateTeamData";
-
+import { addDataToDB } from "../../../service/firestoreFunctions";
+import { useFirebaseAuthentication } from "../../../service/useFirebaseAuthentication";
+import { Loader } from "../../UI";
 export default function CreateTeam() {
+  const [loading, setloading] = useState(false)
+  const {checkIfUserIsSignedIn}= useFirebaseAuthentication()
+  const user = checkIfUserIsSignedIn()
   const navigate = useNavigate()
-    const {teamLineUp,} = useNewTeamData()
     const firstFormValues = useRef()
   const [steps, setSteps] = useState(1);
   
@@ -19,9 +22,22 @@ export default function CreateTeam() {
 firstFormValues.current = formVales
 setSteps(prev=>prev + 1)
   }
-  const handleFinish = ()=>{
+  const handleFinish = (teamLineUp)=>{
+    const teamInformation = {...firstFormValues.current, formation: "433",}
+    try {
+      setloading(true)
+      addDataToDB(user?.email, teamInformation, teamLineUp).then(()=>{
+        navigate("/dashboard/my-team", {replace: true})
+       }).catch((error)=>{
+        console.log(error);
+       }).finally(()=>{
+        setloading(false)
+       })
+    } catch (error) {
+      console.log(error)
+    }
 
-navigate("/dashboard/my-team", {replace: true})
+// navigate("/dashboard/my-team", {replace: true})
   }
   return (
     <div className="px-4 pb-[7rem]">
@@ -38,6 +54,7 @@ navigate("/dashboard/my-team", {replace: true})
         )}
        
       </div>
+{loading && <Loader />}
     </div>
   );
 }

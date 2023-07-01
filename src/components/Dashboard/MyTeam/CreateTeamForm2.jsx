@@ -7,13 +7,13 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { toast } from "react-toastify";
 
 export default function TeamSquad({ handlePrev, handleFinish }) {
-  const { teamLineUp, setShowNotification } = useNewTeamData();
+  const { teamLineUp, } = useNewTeamData();
   const [showAddPlayersModal, setShowAddPlayersModal] = useState(false);
 
 
   const handleSecondForm = () => {
     if (teamLineUp.length >= 11) {
-      handleFinish();
+      handleFinish(teamLineUp);
     } else {
       toast.info("Squad can't be less than 11")
     }

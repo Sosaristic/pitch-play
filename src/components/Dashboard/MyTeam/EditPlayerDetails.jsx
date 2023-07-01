@@ -41,7 +41,10 @@ export default function EditPlayerDetails({
         name: values.name,
         num: values.number,
         id,
-        pos: selectPlayerPosition.value
+        pos: selectPlayerPosition.value,
+        isCaptain: false,
+        swapColor: false,
+        isRemoved: false
       }
       if(isEditing){
          const editDetails = {

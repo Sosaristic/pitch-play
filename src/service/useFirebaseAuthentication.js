@@ -19,13 +19,13 @@ export const useFirebaseAuthentication = () => {
   const { setDisplayLoader } = useAppContext();
   const { onlineStatus } = useOnlineStatus();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("user is logged in");
-    } else {
-      console.log("user is signed out");
-    }
-  });
+  // onAuthStateChanged(auth, (user) => {
+  //   // if (user) {
+  //   //   console.log("user is logged in");
+  //   // } else {
+  //   //   console.log("user is signed out");
+  //   // }
+  // });
 
   function signUp(email, password) {
     if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
