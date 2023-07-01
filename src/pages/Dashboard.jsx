@@ -1,20 +1,17 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { BottomNav, DashboardHeader, MainSideNav } from "../components/Dashboard";
 import { Loader } from "../components/UI";
 import { Outlet, Navigate } from "react-router-dom";
 import { MyTeamDataProvider } from "../context/MyTeamData";
 import { NewTeamDataProvider } from "../context/CreateTeamData";
-import { ToastContainer, Zoom, toast } from "react-toastify";
-import { auth } from "../service/firebase";
 import { getTeamFromDB } from "../service/firestoreFunctions";
 import { useFirebaseAuthentication } from "../service/useFirebaseAuthentication";
-import { onAuthStateChanged } from "firebase/auth";
 import { useAppContext } from "../context/AppContext";
 
 import "react-toastify/dist/ReactToastify.css";
 export default function Dashboard() {
   const {setUserHasTeam} = useAppContext()
-  const { checkIfUserIsSignedIn, checkUserSignedIn } = useFirebaseAuthentication();
+  const { checkUserSignedIn } = useFirebaseAuthentication();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(false);
 

@@ -1,15 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Avatar } from "../UI";
 import { MdArrowDropDown } from "react-icons/md";
-import { useLoginToken } from "../../hooks/useLoginToken";
 import { useFirebaseAuthentication } from "../../service/useFirebaseAuthentication";
 
 export default function DashboardHeader() {
-  const {signUserOut} = useFirebaseAuthentication()
-  const {removeToken} = useLoginToken()
-  const navigate = useNavigate()
-
+  const {signUserOut, checkIfUserIsSignedIn} = useFirebaseAuthentication()
+  const user = checkIfUserIsSignedIn()
   const handleLogout = ()=>{
 signUserOut()
   }
@@ -19,7 +15,7 @@ signUserOut()
         role="dropdown"
         className="group ml-auto flex gap-2 relative text-dark-grey-rgba font-jost bg-dark-grey items-center px-4 py-1 rounded-md"
       >
-        <p className="hidden md:flex items-center  text-[.8rem]">Anderson </p>
+        <p className="hidden md:flex items-center  text-[.8rem]">{user?.email} </p>
         <div className="flex items center">
           <Avatar />
           <span className="text-[1.5rem] flex items-center">
@@ -32,7 +28,7 @@ signUserOut()
             <div className="w-fit">
               <Avatar />
             </div>
-            <p>Anderson</p>
+            <p>{user?.email}</p>
             <button type="button" onClick={handleLogout} className="bg-primary w-[60%] rounded-lg hover:bg-hover transition-colors duration-300">Sign Out</button>
           </div>
         </div>

@@ -26,7 +26,8 @@ export const loginSchema = Yup.object({
 
   export const editPlayerModalSchema = Yup.object({
     name: Yup.string()
-    .max(8, "Must be 15 characters or less")
+    .max(10, "Must be 10 characters or less")
+    .min(4, "must be at least 4 characters")
     .required(" name is required"),
     number: Yup.string()
     .matches(/\d+/, "only number")
@@ -38,7 +39,7 @@ export const loginSchema = Yup.object({
     .max(17, "Must be 17 characters or less")
     .required(" name is required"),
     teamManager: Yup.string()
-    .max(10, "Must be 15 characters or less")
+    .min(7, "Must be 15 characters or less")
     .required(" name is required"),
   })
 

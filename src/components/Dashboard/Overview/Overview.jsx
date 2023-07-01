@@ -9,7 +9,6 @@ import { UserHasNoTeam } from '../../UI'
 
 export default function Overview() {
 const {userHasTeam} = useAppContext()
-console.log(userHasTeam);
 if(!userHasTeam){
   return <div className=''>
    <UserHasNoTeam />
@@ -20,7 +19,7 @@ if(!userHasTeam){
     <main className='px-2 lg:px-8 pb-[4rem] lg:pb-0'>
         <section>
           <h2 className='text-[1.8rem] lg:text-[2.5rem] font-[600] font-poppins'>Dashboard</h2>
-          <p className='text-secondary-text font-jost font-[600]'>Welcome back, Anderson</p>
+          <p className='text-secondary-text font-jost font-[600]'>Welcome back, {userHasTeam?.teamManager}</p>
         </section>
         <section className='flex flex-col md:flex-row mt-4 gap-2'>
         <TeamFormCard />
