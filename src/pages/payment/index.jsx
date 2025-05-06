@@ -93,7 +93,7 @@ const Payment = ({ token }) => {
 const styles = {
   container: {
     padding: 16,
-    maxWidth: 400,
+    width: '100%',
     margin: 'auto',
     fontFamily: 'sans-serif',
     backgroundColor: 'transparent',
