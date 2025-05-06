@@ -97,7 +97,7 @@ const styles = {
     margin: 'auto',
     fontFamily: 'sans-serif',
     backgroundColor: 'transparent',
-    height: '100vh',
+    minHeight: '100vh',
     backgroundImage: `url(${BgImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -105,6 +105,7 @@ const styles = {
   },
   header: {
     textAlign: 'center',
+    color: 'black',
   },
   dropin: {
     marginBottom: 16,
