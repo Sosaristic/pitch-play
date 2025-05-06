@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import BgImage from '../../assets/images/background.png';
 
 const Payment = ({ token }) => {
   const [clientToken, setClientToken] = useState('');
@@ -98,6 +98,10 @@ const styles = {
     fontFamily: 'sans-serif',
     backgroundColor: 'transparent',
     height: '100vh',
+    backgroundImage: `url(${BgImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
   },
   header: {
     textAlign: 'center',
