@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -8,11 +8,11 @@ import {
   setPersistence,
   sendEmailVerification,
   browserSessionPersistence,
-} from "firebase/auth";
-import { auth } from "./firebase";
-import { toast } from "react-toastify";
-import { useOnlineStatus } from "../hooks/useOnlineStatus";
-import { useAppContext } from "../context/AppContext";
+} from 'firebase/auth';
+import { auth } from './firebase';
+import { toast } from 'react-toastify';
+import { useOnlineStatus } from '../hooks/useOnlineStatus';
+import { useAppContext } from '../context/AppContext';
 
 export const useFirebaseAuthentication = () => {
   const navigate = useNavigate();
@@ -27,8 +27,9 @@ export const useFirebaseAuthentication = () => {
   //   // }
   // });
 
-  function signUp(email, password) {
-    if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
+  function signUp(email, password, type) {
+    if (!onlineStatus)
+      return toast.info('You are Offline, turn on network and try again');
     try {
       setDisplayLoader(true);
 
@@ -37,8 +38,8 @@ export const useFirebaseAuthentication = () => {
           const user = userCredentials.user;
           sendEmailVerification(user)
             .then(() => {
-              console.log("email verifucation sent");
-              navigate("/verification", { replace: true, state: user.email });
+              console.log('email verifucation sent');
+              navigate('/verification', { replace: true, state: user.email });
             })
             .catch((error) => {
               console.log(error);
@@ -47,15 +48,16 @@ export const useFirebaseAuthentication = () => {
           setDisplayLoader(false);
         })
         .catch((error) => {
-          const errorMessage = error.code.slice(5).replace(/-/g, " ");
+          const errorMessage = error.code.slice(5).replace(/-/g, ' ');
           toast.error(errorMessage);
           setDisplayLoader(false);
         });
     } catch (error) {}
   }
 
-  function signIn(email, password) {
-    if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
+  function signIn(email, password, type) {
+    if (!onlineStatus)
+      return toast.info('You are Offline, turn on network and try again');
     try {
       setDisplayLoader(true);
       signInWithEmailAndPassword(auth, email, password)
@@ -64,17 +66,16 @@ export const useFirebaseAuthentication = () => {
           const isVerified = userCredentials.user.emailVerified;
           console.log(`user is verified ${isVerified}`);
           if (!isVerified) {
-            throw new Error("auth/Email-not-verified");
+            throw new Error('auth/Email-not-verified');
           }
-          navigate("/dashboard/overview");
+          navigate('/dashboard/overview');
         })
         .catch((error) => {
-          if (error.message == "auth/Email-not-verified") {
-            const errorMessage = error.message.slice(5).replace(/-/g, " ");
+          if (error.message == 'auth/Email-not-verified') {
+            const errorMessage = error.message.slice(5).replace(/-/g, ' ');
             toast.error(errorMessage);
-
           } else {
-            const errorMessage = error.code.slice(5).replace(/-/g, " ");
+            const errorMessage = error.code.slice(5).replace(/-/g, ' ');
             toast.error(errorMessage);
           }
 
@@ -84,7 +85,8 @@ export const useFirebaseAuthentication = () => {
   }
 
   function signUserInWithSession(email, password) {
-    if (!onlineStatus) return toast.info("You are Offline, turn on network and try again");
+    if (!onlineStatus)
+      return toast.info('You are Offline, turn on network and try again');
     setDisplayLoader(true);
 
     try {
@@ -94,7 +96,7 @@ export const useFirebaseAuthentication = () => {
         })
         .catch((error) => {
           console.log(error);
-          const errorMessage = error.code.slice(5).replace(/-/g, " ");
+          const errorMessage = error.code.slice(5).replace(/-/g, ' ');
           toast.error(errorMessage);
           setDisplayLoader(false);
         });
@@ -106,7 +108,7 @@ export const useFirebaseAuthentication = () => {
   function signUserOut() {
     signOut(auth)
       .then(() => {
-        navigate("/sign-in");
+        navigate('/sign-in');
       })
 
       .catch((error) => {
@@ -124,7 +126,7 @@ export const useFirebaseAuthentication = () => {
         if (user) {
           resolve(user);
         } else {
-          reject(new Error("user not signed in"));
+          reject(new Error('user not signed in'));
         }
       });
     });

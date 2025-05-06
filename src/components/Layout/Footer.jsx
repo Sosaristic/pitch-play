@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 export default function Footer() {
   return (
-    <div>Footer</div>
-  )
+    <footer className="my-6 text-sm text-center">
+      {' '}
+      <p> @2024 All rights reserved, Eruemukohwarien peace competition</p>
+      <p>Developed by Sunday Omena Anderson</p>
+    </footer>
+  );
 }

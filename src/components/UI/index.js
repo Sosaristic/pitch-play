@@ -1,13 +1,15 @@
-export {default as TeamsCard} from "./TeamsCard"
-export {default as PopOver} from "./PopOver"
-export {default as TeamSelector} from "./TeamSelector"
-export {default as Button} from "./Button"
-export {default as ConfirmationDialog} from "./CofirmationDialog"
-export {default as Time} from "./Time"
-export {default as ScoreBoard} from "./ScoreBoard"
-export {default as Loader} from "./Loader"
-export {default as PitchView} from "./PitchView"
-export {default as Notification} from "./Notification"
-export {default as Avatar} from "./Avatar"
-export {default as UserHasNoTeam} from "./UserHasNoTeam"
-export {default as ErrorBoundary} from "./ErrorBoundary"
+export { default as TeamsCard } from './TeamsCard';
+export { default as PopOver } from './PopOver';
+export { default as TeamSelector } from './TeamSelector';
+export { default as Button } from './Button';
+export { default as ConfirmationDialog } from './CofirmationDialog';
+export { default as Time } from './Time';
+export { default as ScoreBoard } from './ScoreBoard';
+export { default as Loader } from './Loader';
+export { default as PitchView } from './PitchView';
+export { default as Notification } from './Notification';
+export { default as Avatar } from './Avatar';
+export { default as UserHasNoTeam } from './UserHasNoTeam';
+export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as FootballTable } from './FootballTable';
+export { default as Table } from './Table';
