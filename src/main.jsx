@@ -34,6 +34,7 @@ import {
 } from './components/Dashboard/';
 import { CompetitionDashboard, CompetitionMatches } from './pages/competition';
 import CompetitionLayout from './components/Layout/CompetitionLayout.jsx';
+import Payment from './pages/payment/index.jsx';
 
 const router = createBrowserRouter([
   {
@@ -101,7 +102,7 @@ const router = createBrowserRouter([
   },
 
   {
-    element: <div>Payment</div>,
+    element: <Payment />,
     path: '/payment',
   },
 ]);
