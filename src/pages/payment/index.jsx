@@ -96,6 +96,8 @@ const styles = {
     maxWidth: 400,
     margin: 'auto',
     fontFamily: 'sans-serif',
+    backgroundColor: 'transparent',
+    height: '100vh',
   },
   header: {
     textAlign: 'center',
